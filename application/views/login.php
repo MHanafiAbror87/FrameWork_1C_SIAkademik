@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ASIS | Aplikasi Sistem Sekolah </title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<!--===============================================================================================-->
+  <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>asset/plugins/animate/animate.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/animate.css-master/animate.min.css">
-<!--===============================================================================================-->
+  <!--===============================================================================================-->
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/login/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/square/blue.css">
 
-<style>
+  <style>
     body {
       background: url(<?php echo base_url(); ?>assets/dist/img/foto.jpg);
       margin: 0;

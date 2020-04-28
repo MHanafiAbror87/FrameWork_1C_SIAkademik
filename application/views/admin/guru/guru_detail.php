@@ -61,6 +61,11 @@
                                 <td><?php echo $nama_guru; ?></td>
                             </tr>
                             <tr>
+                                <td style="font-weight:bold;">Password</td>
+                                <td>:</td>
+                                <td><?php echo $password; ?></td>
+                            </tr>
+                            <tr>
                                 <td style="font-weight:bold;">Jenis Kelamin</td>
                                 <td>:</td>
                                 <td><?php echo $jenis_kelamin; ?></td>

@@ -1,47 +1,53 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pengguna extends CI_Controller {
+class Pengguna extends CI_Controller
+{
 
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-			$this->load->Model('Pengguna_model');
-			$this->load->Model('Combo_model');
+		$this->load->Model('Pengguna_model');
+		$this->load->Model('Combo_model');
 	}
 
 
-	public function index() {
+	public function index()
+	{
 		redirect(base_url());
 	}
 
 
-	public function guru() {
+	public function guru()
+	{
 		$d['judul'] = "Data Guru";
 		$d['guru'] = $this->Pengguna_model->guru();
-		$this->load->view('admin/top',$d);
+		$this->load->view('admin/top', $d);
 		$this->load->view('admin/menu');
 		$this->load->view('admin/guru/guru');
-		$this->load->view('admin/bottom');	
+		$this->load->view('admin/bottom');
 	}
 
-	public function guru_detail($nip) {
+	public function guru_detail($nip)
+	{
 		$d['judul'] = "Data Guru";
 		$d['judul2'] = "Detail";
 		$get = $this->Pengguna_model->guru_detail($nip);
-		if($get->num_rows() == 0) {
-			$this->load->view('admin/top',$d);
+		if ($get->num_rows() == 0) {
+			$this->load->view('admin/top', $d);
 			$this->load->view('admin/menu');
 			$this->load->view('404');
 			$this->load->view('admin/bottom');
-		} else { 
+		} else {
 			$data = $get->row();
 			$d['nip'] = $data->nip;
 			$d['nuptk'] = $data->nuptk;
 			$d['nik'] = $data->nik;
 			$d['nama_guru'] = $data->nama_guru;
+			$d['password'] = $data->password;
 			$d['jenis_kelamin'] = $data->jenis_kelamin;
-			$d['tanggal_lahir'] = date("d-m-Y",strtotime($data->tanggal_lahir));
+			$d['tanggal_lahir'] = date("d-m-Y", strtotime($data->tanggal_lahir));
 			$d['tempat_lahir'] = $data->tempat_lahir;
 			$d['alamat_jalan'] = $data->alamat_jalan;
 			$d['kelurahan'] = $data->kelurahan;
@@ -54,14 +60,15 @@ class Pengguna extends CI_Controller {
 			$d['foto'] = $data->foto;
 			$d['kode_guru'] = $data->kode_guru;
 			$d['aktif_guru'] = $data->aktif_guru;
-			$this->load->view('admin/top',$d);
+			$this->load->view('admin/top', $d);
 			$this->load->view('admin/menu');
 			$this->load->view('admin/guru/guru_detail');
-			$this->load->view('admin/bottom');	
+			$this->load->view('admin/bottom');
 		}
 	}
 
-	public function guru_tambah() {
+	public function guru_tambah()
+	{
 		$d['judul'] = "Data Guru";
 		$d['judul2'] = "Tambah";
 		$d['tipe'] = 'add';
@@ -69,6 +76,7 @@ class Pengguna extends CI_Controller {
 		$d['nuptk'] = "";
 		$d['nik'] = "";
 		$d['nama_guru'] = "";
+		$d['password'] = "";
 		$d['jenis_kelamin'] = "";
 		$d['tanggal_lahir'] = "";
 		$d['tempat_lahir'] = "";
@@ -83,17 +91,17 @@ class Pengguna extends CI_Controller {
 		$d['foto'] = "";
 		$d['kode_guru'] = "";
 		$d['aktif_guru'] = "";
-		$this->load->view('admin/top',$d);
+		$this->load->view('admin/top', $d);
 		$this->load->view('admin/menu');
 		$this->load->view('admin/guru/guru_tambah');
 		$this->load->view('admin/bottom');
-		
 	}
 
 
-	public function guru_edit($kode_guru) {
+	public function guru_edit($kode_guru)
+	{
 		$cek = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$kode_guru'");
-		if($cek->num_rows() > 0) { 
+		if ($cek->num_rows() > 0) {
 			$d['judul'] = "Data Guru";
 			$d['judul2'] = "Ubah";
 			$d['tipe'] = 'edit';
@@ -103,9 +111,10 @@ class Pengguna extends CI_Controller {
 			$d['nuptk'] = $data->nuptk;
 			$d['nik'] = $data->nik;
 			$d['nama_guru'] = $data->nama_guru;
+			$d['password'] = $data->password;
 			$d['jenis_kelamin'] = $data->jenis_kelamin;
-			if(!empty($data->tanggal_lahir) && $data->tanggal_lahir != '0000-00-00') {
-				$d['tanggal_lahir'] = date("d-m-Y",strtotime($data->tanggal_lahir));
+			if (!empty($data->tanggal_lahir) && $data->tanggal_lahir != '0000-00-00') {
+				$d['tanggal_lahir'] = date("d-m-Y", strtotime($data->tanggal_lahir));
 			} else {
 				$d['tanggal_lahir'] = '';
 			}
@@ -121,147 +130,148 @@ class Pengguna extends CI_Controller {
 			$d['foto'] = $data->foto;
 			$d['kode_guru'] = $data->kode_guru;
 			$d['aktif_guru'] = $data->aktif_guru;
-			$this->load->view('admin/top',$d);
+			$this->load->view('admin/top', $d);
 			$this->load->view('admin/menu');
 			$this->load->view('admin/guru/guru_tambah');
 			$this->load->view('admin/bottom');
 		} else {
-			$this->load->view('admin/top',$d);
+			$this->load->view('admin/top', $d);
 			$this->load->view('admin/menu');
 			$this->load->view('404');
 			$this->load->view('admin/bottom');
-		}	
+		}
 	}
 
-	public function guru_save() {
-			$tipe = $this->input->post("tipe");	
-			$in['nip'] = $this->input->post("nip");
-			$in['nuptk'] = $this->input->post("nuptk");
-			$in['nik'] = $this->input->post("nik");
-			$in['nama_guru'] = $this->input->post("nama_guru");
-			$in['jenis_kelamin'] = $this->input->post("jenis_kelamin");
-			$in['tanggal_lahir'] = date("Y-m-d",strtotime($this->input->post("tanggal_lahir")));
-			$in['tempat_lahir'] = $this->input->post("tempat_lahir");
-			$in['alamat_jalan'] = $this->input->post("alamat_jalan");
-			$in['kelurahan'] = $this->input->post("kelurahan");
-			$in['kecamatan'] = $this->input->post("kecamatan");
-			$in['hp'] = $this->input->post("hp");
-			$in['telepon'] = $this->input->post("telepon");
-			$in['email'] = $this->input->post("email");
-			$in['agama'] = $this->input->post("agama");
-			$in['kewarganegaraan'] = $this->input->post("kewarganegaraan");
-			$in['password'] = $this->input->post("nip");
+	public function guru_save()
+	{
+		$tipe = $this->input->post("tipe");
+		$in['nip'] = $this->input->post("nip");
+		$in['nuptk'] = $this->input->post("nuptk");
+		$in['nik'] = $this->input->post("nik");
+		$in['nama_guru'] = $this->input->post("nama_guru");
+		$in['password'] = $this->input->post("password");
+		$in['jenis_kelamin'] = $this->input->post("jenis_kelamin");
+		$in['tanggal_lahir'] = date("Y-m-d", strtotime($this->input->post("tanggal_lahir")));
+		$in['tempat_lahir'] = $this->input->post("tempat_lahir");
+		$in['alamat_jalan'] = $this->input->post("alamat_jalan");
+		$in['kelurahan'] = $this->input->post("kelurahan");
+		$in['kecamatan'] = $this->input->post("kecamatan");
+		$in['hp'] = $this->input->post("hp");
+		$in['telepon'] = $this->input->post("telepon");
+		$in['email'] = $this->input->post("email");
+		$in['agama'] = $this->input->post("agama");
+		$in['kewarganegaraan'] = $this->input->post("kewarganegaraan");
+		$in['password'] = $this->input->post("nip");
 
 
-			$config['upload_path'] = './upload/guru';
-			$config['allowed_types']= 'jpg|png';
-			$config['encrypt_name']	= TRUE;
-			$config['remove_spaces']	= TRUE;	
-			$config['max_size']     = '0';
-			$config['max_width']  	= '0';
-			$config['max_height']  	= '0';
+		$config['upload_path'] = './upload/guru';
+		$config['allowed_types'] = 'jpg|png';
+		$config['encrypt_name']	= TRUE;
+		$config['remove_spaces']	= TRUE;
+		$config['max_size']     = '0';
+		$config['max_width']  	= '0';
+		$config['max_height']  	= '0';
 
-			$this->load->library('upload', $config);
+		$this->load->library('upload', $config);
 
-			
-			if($tipe == "add") {
-				$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]'");
-				if($cek->num_rows() > 0) { 
-					$this->session->set_flashdata("error","Gagal Input. NIPTK Sudah Digunakan");
-					redirect("admin/pengguna/guru_tambah/");
-				} else { 	
-					if(!empty($_FILES['foto']['name'])) {
-						if($this->upload->do_upload("foto")) {
-							$data	 	= $this->upload->data();
-							$in['foto'] = $data['file_name'];	
-							$this->db->insert("pgn_guru",$in);
-							$this->session->set_flashdata("success","Tambah Data Guru Berhasil");
-							redirect("admin/pengguna/guru_detail/".$this->input->post("nip"));	
-						} else {
-							$this->session->set_flashdata("error",$this->upload->display_errors());
-							redirect("admin/pengguna/guru_tambah/");	
-						}
+
+		if ($tipe == "add") {
+			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]'");
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. NIPTK Sudah Digunakan");
+				redirect("admin/pengguna/guru_tambah/");
+			} else {
+				if (!empty($_FILES['foto']['name'])) {
+					if ($this->upload->do_upload("foto")) {
+						$data	 	= $this->upload->data();
+						$in['foto'] = $data['file_name'];
+						$this->db->insert("pgn_guru", $in);
+						$this->session->set_flashdata("success", "Tambah Data Guru Berhasil");
+						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
 					} else {
-						$this->session->set_flashdata("error",$this->upload->display_errors());	
+						$this->session->set_flashdata("error", $this->upload->display_errors());
 						redirect("admin/pengguna/guru_tambah/");
 					}
+				} else {
+					$this->session->set_flashdata("error", $this->upload->display_errors());
+					redirect("admin/pengguna/guru_tambah/");
 				}
-			} elseif($tipe = 'edit') {
-				$where['kode_guru'] 	= $this->input->post('kode_guru');
-				$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND kode_guru != '$where[kode_guru]'");
-				if($cek->num_rows() > 0) { 
-					$this->session->set_flashdata("error","Gagal Input.  NIPTK Sudah Digunakan");
-					redirect("admin/pengguna/guru_edit/".$this->input->post("kode_guru"));
-				}  else { 	
-					if(!empty($_FILES['foto']['name'])) {
-						if($this->upload->do_upload("foto")) {
-							$data	 	= $this->upload->data();
-							$in['foto'] = $data['file_name'];	
-							$in['aktif_guru'] = $this->input->post("aktif_guru");
-							$where['kode_guru'] 	= $this->input->post('kode_guru');
-							$this->db->update("pgn_guru",$in,$where);
-							@unlink("./upload/guru/".$this->input->post("foto_lama"));
-							$this->session->set_flashdata("success","Ubah Data Guru Berhasil");
-							redirect("admin/pengguna/guru_detail/".$this->input->post("nip"));	
-						} else {
-							$this->session->set_flashdata("error",$this->upload->display_errors()."gagal");
-							redirect("admin/pengguna/guru_detail/".$this->input->post("nip"));
-						}
-					} else {
-						$in['aktif_guru'] = $this->input->post("aktif_guru");
-						$this->db->update("pgn_guru",$in,$where);
-						$where2['username'] = $this->input->post("nip_lama");
-						$in2['nama'] = $this->input->post("nama_guru");
-						$in2['username'] = $this->input->post("nip");
-						$in2['password'] = $this->input->post("nip");
-						$in2['id_jabatan'] = $this->input->post("id_jabatan");
-						$this->db->update("mst_user",$in2,$where2);
-						$this->session->set_flashdata("success","Ubah Data Guru Berhasil");
-						redirect("admin/pengguna/guru_detail/".$this->input->post("nip"));	
-					}
-				}
-				
-			} else {
-				redirect(base_url());
 			}
+		} elseif ($tipe = 'edit') {
+			$where['kode_guru'] 	= $this->input->post('kode_guru');
+			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND kode_guru != '$where[kode_guru]'");
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input.  NIPTK Sudah Digunakan");
+				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
+			} else {
+				if (!empty($_FILES['foto']['name'])) {
+					if ($this->upload->do_upload("foto")) {
+						$data	 	= $this->upload->data();
+						$in['foto'] = $data['file_name'];
+						$in['aktif_guru'] = $this->input->post("aktif_guru");
+						$where['kode_guru'] 	= $this->input->post('kode_guru');
+						$this->db->update("pgn_guru", $in, $where);
+						@unlink("./upload/guru/" . $this->input->post("foto_lama"));
+						$this->session->set_flashdata("success", "Ubah Data Guru Berhasil");
+						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
+					} else {
+						$this->session->set_flashdata("error", $this->upload->display_errors() . "gagal");
+						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
+					}
+				} else {
+					$in['aktif_guru'] = $this->input->post("aktif_guru");
+					$this->db->update("pgn_guru", $in, $where);
+					$where2['username'] = $this->input->post("nip_lama");
+					$in2['nama'] = $this->input->post("nama_guru");
+					$in2['username'] = $this->input->post("nip");
+					$in2['password'] = $this->input->post("nip");
+					$in2['id_jabatan'] = $this->input->post("id_jabatan");
+					$this->db->update("mst_user", $in2, $where2);
+					$this->session->set_flashdata("success", "Ubah Data Guru Berhasil");
+					redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
+				}
+			}
+		} else {
+			redirect(base_url());
+		}
 	}
 
 	public function guru_import()
 	{
-			$unggah['upload_path']   = './upload/';
-			$unggah['allowed_types'] = 'xlsx';
-			$unggah['file_name']     = 'guru_import';
-			$unggah['overwrite']     = true;
-			$unggah['max_size']      = 5120;
+		$unggah['upload_path']   = './upload/';
+		$unggah['allowed_types'] = 'xlsx';
+		$unggah['file_name']     = 'guru_import';
+		$unggah['overwrite']     = true;
+		$unggah['max_size']      = 5120;
 
-			$this->load->library('upload');
+		$this->load->library('upload');
 
-			$this->upload->initialize($unggah);
-			if ($this->upload->do_upload('file_import')) {
-				$file_excel = new unggahexcel('upload/guru_import.xlsx', null);
+		$this->upload->initialize($unggah);
+		if ($this->upload->do_upload('file_import')) {
+			$file_excel = new unggahexcel('upload/guru_import.xlsx', null);
 
-				if (count($file_excel->Sheets()) == 1) {
-					$baris = 1;
+			if (count($file_excel->Sheets()) == 1) {
+				$baris = 1;
 
-					foreach ($file_excel as $kolom) {
-						if ($baris >= 2) {
-							$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$kolom[0]'");
-							if($cek->num_rows() == 0) { 
-								$in['nip'] = $kolom[0];
-								$in['nama_guru'] = $kolom[1];
-								$in['jenis_kelamin'] = $kolom[2];
-								$in['id_jabatan'] = $kolom[3];
-								$in['password'] = $kolom[0];
-								$this->db->insert("pgn_guru", $in);
-							}
+				foreach ($file_excel as $kolom) {
+					if ($baris >= 2) {
+						$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$kolom[0]'");
+						if ($cek->num_rows() == 0) {
+							$in['nip'] = $kolom[0];
+							$in['nama_guru'] = $kolom[1];
+							$in['jenis_kelamin'] = $kolom[2];
+							$in['id_jabatan'] = $kolom[3];
+							$in['password'] = $kolom[0];
+							$this->db->insert("pgn_guru", $in);
 						}
-						$baris++;
 					}
-
-					$this->session->set_flashdata("success", "Berhasil Import Data Guru");
-				} else {
-					$this->session->set_flashdata("error", "Gagal Import Data");
+					$baris++;
 				}
+
+				$this->session->set_flashdata("success", "Berhasil Import Data Guru");
+			} else {
+				$this->session->set_flashdata("error", "Gagal Import Data");
+			}
 			unlink('./upload/guru_import.xlsx');
 			redirect("pengguna/guru");
 		} else {
