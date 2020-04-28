@@ -92,6 +92,63 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user text-success"></i>
               <p>
+                Data Master
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Identitas Sekolah</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Tahun Akademik</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Ruangan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Jurusan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Kelas</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                  <i class="fas fa-angle-right nav-icon text-success"></i>
+                  <p>Data Golongan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview <?php if ($this->uri->segment(1) == 'user') echo 'active'; ?> treeview <?php if ($this->uri->segment(1) == 'user') echo 'menu-open'; ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user text-success"></i>
+              <p>
                 Pengguna
                 <i class="fas fa-angle-left right"></i>
               </p>
