@@ -42,6 +42,12 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
+                                        <label>Kode Guru</label>
+                                        <input type="number" class="form-control" name="kode_guru" value="<?php echo $kode_guru; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
                                         <label>NIPTK</label>
                                         <input type="number" class="form-control" name="nip" value="<?php echo $nip; ?>" required>
                                     </div>

@@ -22,4 +22,9 @@ class Pengguna_model extends CI_Model
 		$q = $this->db->query("SELECT * FROM pgn_guru WHERE kode_guru = '$kode_guru'");
 		return $q;
 	}
+	public function hapusdata($nip)
+	{
+		$this->db->where('nip', $nip);
+		$this->db->delete('pgn_guru');
+	}
 }

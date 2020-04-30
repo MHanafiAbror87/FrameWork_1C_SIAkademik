@@ -41,6 +41,11 @@
                         <?php } ?>
                         <table id="datatb" class="table table-bordered table-hover">
                             <tr>
+                                <td style="width:200px;font-weight:bold;">Kode Guru</td>
+                                <td style="width:10px;">:</td>
+                                <td><?php echo $kode_guru; ?></td>
+                            </tr>
+                            <tr>
                                 <td style="width:200px;font-weight:bold;">NIPTK</td>
                                 <td style="width:10px;">:</td>
                                 <td><?php echo $nip; ?></td>

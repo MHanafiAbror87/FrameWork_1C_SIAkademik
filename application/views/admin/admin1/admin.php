@@ -39,11 +39,11 @@
                                         <td><?php echo $data['id']; ?></td>
                                         <td><?php echo $data['nama']; ?></td>
                                         <td><?php echo $data['username']; ?></td>
-                                        <td><a href="<?= base_url(); ?>mahasiswa/detail/<?= $data['id']; ?>" class="badge badge-primary"> detail </a>
-                                            <a href="<?= base_url(); ?>mahasiswa/edit/<?= $data['id']; ?>" class="badge badge-success"> edit </a>
-                                            <a href="<?= base_url(); ?>mahasiswa/hapus/<?= $data['id']; ?>" class="badge badge-danger" onclick="return
-                           confirm('yakin?');"> hapus </a>
-                                            </<a>
+                                        <td>
+                                            <a class="btn btn-primary btn-xs" href="<?php echo base_url() . 'admin/pengguna_admin/admin_detail/' . $data['id']; ?>"><i class="fa fa-search"> </i> Detail</a>
+                                            <a class="btn btn-success btn-xs" href="<?php echo base_url() . 'admin/pengguna_admin/admin_edit/' . $data['id']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
+                                            <a class="btn btn-danger btn-xs" href="<?php echo base_url() . 'admin/pengguna_admin/hapus/' . $data['id']; ?>"><i class="fa fa-trash"> </i> Hapus </a>
+
                                     </tr>
                                 <?php $no++;
                                 } ?>

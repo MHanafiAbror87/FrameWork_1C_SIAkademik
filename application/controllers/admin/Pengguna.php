@@ -162,6 +162,7 @@ class Pengguna extends CI_Controller
 		$in['agama'] = $this->input->post("agama");
 		$in['kewarganegaraan'] = $this->input->post("kewarganegaraan");
 		$in['password'] = $this->input->post("nip");
+		$in['kode_guru'] = $this->input->post("kode_guru");
 
 
 		$config['upload_path'] = './upload/guru';
@@ -177,59 +178,26 @@ class Pengguna extends CI_Controller
 
 		if ($tipe == "add") {
 			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]'");
+
 			if ($cek->num_rows() > 0) {
 				$this->session->set_flashdata("error", "Gagal Input. NIPTK Sudah Digunakan");
 				redirect("admin/pengguna/guru_tambah/");
 			} else {
-				if (!empty($_FILES['foto']['name'])) {
-					if ($this->upload->do_upload("foto")) {
-						$data	 	= $this->upload->data();
-						$in['foto'] = $data['file_name'];
-						$this->db->insert("pgn_guru", $in);
-						$this->session->set_flashdata("success", "Tambah Data Guru Berhasil");
-						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
-					} else {
-						$this->session->set_flashdata("error", $this->upload->display_errors());
-						redirect("admin/pengguna/guru_tambah/");
-					}
-				} else {
-					$this->session->set_flashdata("error", $this->upload->display_errors());
-					redirect("admin/pengguna/guru_tambah/");
-				}
+				$this->db->insert("pgn_guru", $in);
+				$this->session->set_flashdata("success", "Tambah Data Guru Berhasil");
+				redirect("admin/pengguna/guru");
 			}
 		} elseif ($tipe = 'edit') {
 			$where['kode_guru'] 	= $this->input->post('kode_guru');
-			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND kode_guru != '$where[kode_guru]'");
+			$cek = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
 			if ($cek->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.  NIPTK Sudah Digunakan");
+				$this->session->set_flashdata("error", "Gagal Input.  Kode Guru Sudah Digunakan");
 				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
 			} else {
-				if (!empty($_FILES['foto']['name'])) {
-					if ($this->upload->do_upload("foto")) {
-						$data	 	= $this->upload->data();
-						$in['foto'] = $data['file_name'];
-						$in['aktif_guru'] = $this->input->post("aktif_guru");
-						$where['kode_guru'] 	= $this->input->post('kode_guru');
-						$this->db->update("pgn_guru", $in, $where);
-						@unlink("./upload/guru/" . $this->input->post("foto_lama"));
-						$this->session->set_flashdata("success", "Ubah Data Guru Berhasil");
-						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
-					} else {
-						$this->session->set_flashdata("error", $this->upload->display_errors() . "gagal");
-						redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
-					}
-				} else {
-					$in['aktif_guru'] = $this->input->post("aktif_guru");
-					$this->db->update("pgn_guru", $in, $where);
-					$where2['username'] = $this->input->post("nip_lama");
-					$in2['nama'] = $this->input->post("nama_guru");
-					$in2['username'] = $this->input->post("nip");
-					$in2['password'] = $this->input->post("nip");
-					$in2['id_jabatan'] = $this->input->post("id_jabatan");
-					$this->db->update("mst_user", $in2, $where2);
-					$this->session->set_flashdata("success", "Ubah Data Guru Berhasil");
-					redirect("admin/pengguna/guru_detail/" . $this->input->post("nip"));
-				}
+				$in['aktif_guru'] = $this->input->post("aktif_guru");
+				$this->db->update("pgn_guru", $in, $where);
+				$this->session->set_flashdata("success", "Ubah Data Guru Berhasil");
+				redirect("admin/pengguna/guru");
 			}
 		} else {
 			redirect(base_url());
@@ -277,5 +245,11 @@ class Pengguna extends CI_Controller
 		} else {
 			redirect(base_url());
 		}
+	}
+	public function hapus($nip)
+	{
+		$this->Pengguna_model->hapusdata($nip);
+		$this->session->set_flashdata('flash', 'dihapus');
+		redirect('admin/pengguna/guru');
 	}
 }

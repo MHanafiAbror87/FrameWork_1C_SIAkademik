@@ -9,15 +9,21 @@ class Pengguna_admin_model extends CI_Model
         $q = $this->db->query("SELECT * FROM pgn_admin");
         return $q;
     }
-    public function admin_detail($nama)
+
+
+    public function admin_detail($id)
     {
-        $q = $this->db->query("SELECT * FROM pgn_admin WHERE nama = '$nama'");
-        return $q;
+        return $this->db->get_where('pgn_admin', ['id' => $id])->row_array();
     }
 
     public function admin_edit($id)
     {
         $q = $this->db->query("SELECT * FROM pgn_admin WHERE id = '$id'");
         return $q;
+    }
+    public function hapusdata($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('pgn_admin');
     }
 }
