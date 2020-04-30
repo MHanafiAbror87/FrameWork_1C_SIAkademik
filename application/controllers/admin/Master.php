@@ -87,14 +87,12 @@ class Master extends CI_Controller {
 		}	
 	}
 
-    public function jurusan_hapus($kode_jurusan) {
-		$cek = $this->db->query("SELECT kode_jurusan FROM mst_jurusan WHERE kode_jurusan = '$kode_jurusan'");
-			
-			$get = $this->Master_model->jurusan_hapus($kode_jurusan);
-			$data = $get->row();
-            $d['kode_jurusan'] = $data->kode_jurusan;
-            redirect('admin/master/index');
-          }
+	public function hapus($kode_jurusan){
+		$this->Master_model->hapusdata($kode_jurusan);
+		$this->session->set_flashdata('flash','dihapus');
+		redirect('admin/master/jurusan');
+	}
+   
 	public function jurusan_save() {
 			$tipe = $this->input->post("tipe");	
 			$in['nama_jurusan'] = $this->input->post("nama_jurusan");
@@ -196,14 +194,11 @@ $this->load->view('admin/bottom');
             $this->load->view('admin/bottom');
         }
     }
-        public function kelas_hapus($kode_kelas) {
-            $cek = $this->db->query("SELECT kode_kelas FROM mst_kelas WHERE kode_kelas = '$kode_kelas'");
-                
-                $get = $this->Master_model->kelas_hapus($kode_kelas);
-                $data = $get->row();
-                $d['kode_kelas'] = $data->kode_kelas;
-                redirect('admin/master/index');
-              }
+	public function hapus_kelas($kode_kelas){
+		$this->Master_model->hapus_kelas($kode_kelas);
+		$this->session->set_flashdata('flash','dihapus');
+		redirect('admin/master/kelas');
+	}
               
                    public function kelas_save() {
                     $tipe = $this->input->post("tipe");	
@@ -271,4 +266,105 @@ $this->load->view('admin/bottom');
                     }
 
     }
+
+    public function ruangan() {
+		$d['judul'] = "Data Ruangan";
+		$d['ruangan'] = $this->Master_model->ruangan();
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('master/ruangan');
+		$this->load->view('admin/bottom');	
+	}
+
+  	public function ruangan_tambah() {
+		$d['judul'] = "Data Ruangan";
+		$d['judul2'] = "Tambah";
+		$d['tipe'] = 'add';
+		$d['nama_ruangan'] = "";
+        $d['kode_ruangan'] = "";
+        $d['kapasitas_belajar'] = "";
+		$d['aktif_ruangan'] = "";
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('master/ruangan_tambah');
+		$this->load->view('admin/bottom');
+		
+	}
+
+
+	public function ruangan_edit($kode_ruangan) {
+		$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$kode_ruangan'");
+		if($cek->num_rows() > 0) { 
+			$d['judul'] = "Data Ruangan";
+			$d['judul2'] = "Ubah";
+			$d['tipe'] = 'edit';
+			$get = $this->Master_model->ruangan_edit($kode_ruangan);
+			$data = $get->row();
+			$d['nama_ruangan'] = $data->nama_ruangan;
+            $d['kode_ruangan'] = $data->kode_ruangan;
+            $d['kapasitas_belajar'] = $data->kapasitas_belajar;
+			$d['aktif_ruangan'] = $data->aktif_ruangan;
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('master/ruangan_tambah');
+			$this->load->view('admin/bottom');
+		} else {
+			$this->load->view('admin/top');
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		}	
+	}
+
+    public function hapus_ruangan($kode_ruangan){
+		$this->Master_model->hapus_ruangan($kode_ruangan);
+		$this->session->set_flashdata('flash','dihapus');
+		redirect('admin/master/ruangan');
+	}
+	public function ruangan_save() {
+			$tipe = $this->input->post("tipe");	
+			$in['nama_ruangan'] = $this->input->post("nama_ruangan");
+            $in['kode_ruangan'] = $this->input->post("kode_ruangan");
+            $in['kapasitas_belajar'] = $this->input->post("kapasitas_belajar");
+			
+			if($tipe == "add") {
+				$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$in[kode_ruangan]'");
+                $cek2 = $this->db->query("SELECT nama_ruangan FROM mst_ruangan WHERE nama_ruangan = '$in[nama_ruangan]'");
+                $cek3 = $this->db->query("SELECT kapasitas_belajar FROM mst_ruangan WHERE kapasitas_belajar = '$in[kapasitas_belajar]'");
+				if($cek->num_rows() > 0) { 
+					$this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
+					redirect("admin/master/ruangan_tambah");	
+				} else if($cek2->num_rows() > 0) { 
+					$this->session->set_flashdata("error","Gagal Input. Nama Ruangan Sudah Digunakan");
+                    redirect("admin/master/ruangan_tambah");	
+               	} else { 	
+					$this->db->insert("mst_ruangan",$in);
+					$this->session->set_flashdata("success","Tambah Data Ruangan Berhasil");
+					redirect("admin/master/ruangan");	
+				}
+			} elseif($tipe = 'edit') {
+				$where['kode_ruangan'] 	= $this->input->post('kode_ruangan');
+				$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$in[kode_ruangan]' AND kode_ruangan != '$where[kode_ruangan]'");
+                $cek2 = $this->db->query("SELECT nama_ruangan FROM mst_ruangan WHERE nama_ruangan = '$in[nama_ruangan]' AND kode_ruangan != '$where[kode_ruangan]'");
+                $cek3 = $this->db->query("SELECT kapasitas_belajar FROM mst_ruangan WHERE kapasitas_belajar = '$in[kapasitas_belajar]' AND kode_ruangan != '$where[kode_ruangan]'");
+				if($cek->num_rows() > 0) { 
+					$this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
+					redirect("admin/master/ruangan/ruangan_edit/".$this->input->post("kode_ruangan"));
+				} else if($cek2->num_rows() > 0) { 
+					$this->session->set_flashdata("error","Gagal Input. Nama Ruangan Sudah Digunakan");
+                    redirect("admin/master/ruangan/ruangan_edit/".$this->input->post("kode_ruangan"));
+                } else { 	
+					$in['aktif_ruangan'] = $this->input->post("aktif_ruangan");
+					$this->db->update("mst_ruangan",$in,$where);
+					$this->session->set_flashdata("success","Ubah Data Ruangan Berhasil");
+					redirect("admin/master/ruangan");	
+                }
+				
+			} else {
+				redirect(base_url());
+            }
+        
+    }
+    
+    
 }

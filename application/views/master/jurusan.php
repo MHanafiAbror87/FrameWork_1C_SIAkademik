@@ -14,7 +14,7 @@
 			<div class="col-xs-12">
           <div class="box">
 						<div class="box-header">
-              <a class="btn btn-danger btn-sm" href="<?php echo base_url(); ?>admin/master/jurusan_tambah"><i class="fa fa-plus"> </i> Tambah Data</a>
+              <a class="btn btn-success btn-sm" href="<?php echo base_url(); ?>admin/master/jurusan_tambah"><i class="fa fa-plus"> </i> Tambah Data</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -47,13 +47,13 @@ foreach($jurusan->result_array() as $data) { ?>
         ?>
     </td>
     <td style="text-align:center;">
-    <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/master/jurusan_edit/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Ubah </a>
+    <a class="btn btn-success btn-xs" href="<?php echo base_url().'admin/master/jurusan_edit/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Ubah </a>
     </td>
     <td style="text-align:center;">
-    <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/master/jurusan_hapus/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Hapus </a>
+    <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/master/hapus/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Hapus </a>
     </td>
     <td style="text-align:center;">
-    <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/master/jurusan_detail/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Detail </a>
+    <a class="btn btn-primary btn-xs" href="<?php echo base_url().'admin/master/jurusan_detail/'.$data['kode_jurusan']; ?>"><i class="fa fa-edit"> </i> Detail </a>
     </td>
 </tr>
 <?php $no++; } ?>
