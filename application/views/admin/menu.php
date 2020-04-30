@@ -122,7 +122,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                <a href="<?php echo base_url(); ?>admin/master/jurusan" class="nav-link">
                   <i class="fas fa-angle-right nav-icon text-success"></i>
                   <p>Data Jurusan</p>
                 </a>
@@ -130,7 +130,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                <a href="<?php echo base_url(); ?>admin/master/kelas" class="nav-link">
                   <i class="fas fa-angle-right nav-icon text-success"></i>
                   <p>Data Kelas</p>
                 </a>
