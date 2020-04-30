@@ -54,5 +54,19 @@ class Master_model extends CI_Model {
 		$this->db->delete('mst_ruangan');
 	}
 
+	public function kelompok_pelajaran() {
+		$q = $this->db->query("SELECT * FROM akd_kelompok_pelajaran ORDER BY id_kelompok_pelajaran DESC");
+		return $q;
+	}
 
+	public function kelompok_pelajaran_edit($id) {
+		$q = $this->db->query("SELECT * FROM akd_kelompok_pelajaran WHERE id_kelompok_pelajaran = '$id'");
+		return $q;
+	}
+
+public function hapus_kelompok($id_kelompok_pelajaran)
+{
+	$this->db->where('id_kelompok_pelajaran', $id_kelompok_pelajaran);
+	$this->db->delete('akd_kelompok_pelajaran');
+}
 }

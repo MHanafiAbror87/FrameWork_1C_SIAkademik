@@ -188,7 +188,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>diganti ya" class="nav-link">
+                <a href="<?php echo base_url(); ?>admin/Akademik/kelompok_pelajaran" class="nav-link">
                   <i class="fas fa-angle-right nav-icon text-success"></i>
                   <p>Data Kelompok Mapel</p>
                 </a>
