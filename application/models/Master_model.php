@@ -69,4 +69,17 @@ public function hapus_kelompok($id_kelompok_pelajaran)
 	$this->db->where('id_kelompok_pelajaran', $id_kelompok_pelajaran);
 	$this->db->delete('akd_kelompok_pelajaran');
 }
+public function akd_mapel() {
+	$q = $this->db->query("SELECT * FROM akd_mapel ORDER BY kode_mapel DESC");
+	return $q;
+}
+public function akd_mapel_edit($kode) {
+	$q = $this->db->query("SELECT * FROM akd_mapel WHERE kode_mapel = '$kode'");
+	return $q;
+}
+public function akd_mapel_hapus($kode_mapel)
+{
+	$this->db->where('kode_mapel', $kode_mapel);
+	$this->db->delete('akd_mapel');
+}
 }
