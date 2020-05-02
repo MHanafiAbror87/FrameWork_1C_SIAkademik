@@ -91,7 +91,7 @@ public function mapel() {
 				} else { 	
 					$this->db->insert("akd_mapel",$in);
 					$this->session->set_flashdata("success","Tambah Data Mata Pelajaran Berhasil");
-					redirect("admin/akd_mapel/kmapel");	
+					redirect("admin/akd_mapel/mapel");	
 				}
 			} elseif($tipe = 'edit') {
 				$where['kode_mapel'] = $this->input->post('kode_mapel');
