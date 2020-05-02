@@ -212,7 +212,6 @@ $this->load->view('admin/bottom');
                         $cek = $this->db->query("SELECT kode_kelas FROM mst_kelas WHERE kode_kelas = '$in[kode_kelas]'");
                         $cek2 = $this->db->query("SELECT nama_kelas FROM mst_kelas WHERE nama_kelas = '$in[nama_kelas]'");
                         $cek3 = $this->db->query("SELECT kode_guru FROM mst_kelas WHERE kode_guru = '$in[kode_guru]'");
-                        $cek4 = $this->db->query("SELECT kode_jurusan FROM mst_kelas WHERE kode_jurusan = '$in[kode_jurusan]'");
                         $cek5 = $this->db->query("SELECT kode_ruangan FROM mst_kelas WHERE kode_ruangan = '$in[kode_ruangan]'");
                         if($cek->num_rows() > 0) { 
                             $this->session->set_flashdata("error","Gagal Input. Kode Kelas Sudah Digunakan");
@@ -223,10 +222,8 @@ $this->load->view('admin/bottom');
                         } else if($cek3->num_rows() > 0) { 
                             $this->session->set_flashdata("error","Gagal Input. Kode Guru Sudah Digunakan");
                             redirect("admin/master/kelas_tambah");
-                        } else if($cek3->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Kode Jurusan Sudah Digunakan");
-                            redirect("admin/master/kelas_tambah");
-                        } else if($cek3->num_rows() > 0) { 
+                        
+                        } else if($cek5->num_rows() > 0) { 
                             $this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
                             redirect("admin/master/kelas_tambah");
                         } else { 	
