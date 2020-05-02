@@ -234,33 +234,25 @@ $this->load->view('admin/bottom');
                             $this->session->set_flashdata("success","Tambah Data Kelas Berhasil");
                             redirect("admin/master/kelas");	
                         }
-                    } elseif($tipe = 'edit') {
-                        $where['kode_kelas'] 	= $this->input->post('kode_kelas');
-                        $cek = $this->db->query("SELECT kode_kelas FROM mst_kelas WHERE kode_kelas = '$in[kode_kelas]' AND kode_kelas != '$where[kode_jurusan]'");
-                        $cek2 = $this->db->query("SELECT nama_kelas FROM mst_kelas WHERE nama_kelas = '$in[nama_kelas]' AND kode_kelas != '$where[kode_kelas]'");
-                        $cek3 = $this->db->query("SELECT kode_guru FROM mst_kelas WHERE kode_guru = '$in[kode_guru]' AND kode_kelas != '$where[kode_kelas]'");
-                        $cek4 = $this->db->query("SELECT kode_jurusan FROM mst_kelas WHERE kode_jurusan = '$in[kode_guru]' AND kode_kelas != '$where[kode_kelas]'");
-                        $cek3 = $this->db->query("SELECT kode_ruangan FROM mst_kelas WHERE kode_ruangan = '$in[kode_guru]' AND kode_kelas != '$where[kode_kelas]'");
-                        if($cek->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Kode Kelas Sudah Digunakan");
-                            redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
-                        } else if($cek2->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Nama Kelas Sudah Digunakan");
-                            redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
-                        } else if($cek3->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Kode Guru Sudah Digunakan");
-                            redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
-                        } else if($cek3->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Kode Jurusan Sudah Digunakan");
-                            redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
-                        } else if($cek3->num_rows() > 0) { 
-                            $this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
-                            redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
-                        } else { 	
-                            $this->db->update("mst_kelas",$in,$where);
-                            $this->session->set_flashdata("success","Ubah Data Kelas Berhasil");
-                            redirect("admin/master/kelas");	
-                        }
+					} elseif($tipe = 'edit') {
+						$where['kode_kelas'] 	= $this->input->post('kode_kelas');
+						$cek = $this->db->query("SELECT kode_kelas FROM mst_kelas WHERE kode_kelas = '$in[kode_kelas]' AND kode_kelas != '$where[kode_kelas]'");
+						$cek2 = $this->db->query("SELECT nama_kelas FROM mst_kelas WHERE nama_kelas = '$in[nama_kelas]' AND kode_kelas != '$where[kode_kelas]'");
+						$cek3 = $this->db->query("SELECT kode_guru FROM mst_kelas WHERE kode_guru = '$in[kode_guru]' AND kode_kelas != '$where[kode_kelas]'");
+						if($cek->num_rows() > 0) { 
+							$this->session->set_flashdata("error","Gagal Input. Kode Kelas Sudah Digunakan");
+							redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
+						} else if($cek2->num_rows() > 0) { 
+							$this->session->set_flashdata("error","Gagal Input. Nama Kelas Sudah Digunakan");
+							redirect("admin/master/kelas/kelas_edit/".$this->input->post("kode_kelas"));
+						} else if($cek3->num_rows() > 0) { 
+							$this->session->set_flashdata("error","Gagal Input. Kode Guru Sudah Digunakan");
+							redirect("admin/master/Kelas/kelas_edit/".$this->input->post("kode_kelas"));
+						} else { 								
+							$this->db->update("mst_kelas",$in,$where);
+							$this->session->set_flashdata("success","Ubah Data Kelas Berhasil");
+							redirect("admin/master/kelas");	
+						}
                     } else {
                         redirect(base_url());
                     }
