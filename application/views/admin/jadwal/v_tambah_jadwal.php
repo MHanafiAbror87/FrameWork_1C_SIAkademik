@@ -14,7 +14,7 @@
       <div class="row">
 			<div class="col-xs-12">
                 <div class="box">
-                    <form role="form" action="<?php echo base_url(); ?>admin/Akademik/kelompok_pelajaran_save" method="post">
+                    <form role="form" action="<?php echo base_url(); ?>admin/Akademik/akd_jadwal_save" method="post">
 
 
 					      <?php if($this->session->flashdata('error')) { ?>
@@ -27,13 +27,13 @@
 					      <?php } ?>
 
                         <input type="hidden" name="tipe" value="<?php echo $tipe; ?>">
-                        <input type="hidden" name="id_kelompok_pelajaran" value="<?php echo $id_kelompok_pelajaran; ?>">
+                        <input type="hidden" name="kode_jadwal_pelajaran" value="<?php echo $kode_jadwal_pelajaran; ?>">
                         <div class="box-body">
                         <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>Jenis Kelompok Pelajaran</label>
-                                        <input type="text" class="form-control" name="jenis_kelompok_pelajaran" value="<?php echo $jenis_kelompok_pelajaran; ?>" required>
+                                        <label>Kode Guru</label>
+                                        <input type="text" class="form-control" name="kode_guru" value="<?php echo $kode_guru; ?>" required>
                                     </div>
                                     
                                 </div>
@@ -43,8 +43,78 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label>Nama Kelompok Pelajaran</label>
-                                        <input type="text" class="form-control" name="nama_kelompok_pelajaran" value="<?php echo $nama_kelompok_pelajaran; ?>" required>
+                                        <label>Kode Mata Pelajaran</label>
+                                        <input type="text" class="form-control" name="kode_mapel" value="<?php echo $kode_mapel; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Kode Kelas</label>
+                                        <input type="text" class="form-control" name="kode_kelas" value="<?php echo $kode_kelas; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>ID Tahun Ajaran</label>
+                                        <input type="text" class="form-control" name="id_tahun_ajaran" value="<?php echo $id_tahun_ajaran; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Kode Jurusan</label>
+                                        <input type="text" class="form-control" name="kode_jurusan" value="<?php echo $kode_jurusan; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Kode Ruangan</label>
+                                        <input type="text" class="form-control" name="kode_ruangan" value="<?php echo $kode_ruangan; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Jam Mulai</label>
+                                        <input type="text" class="form-control" name="jam_mulai" value="<?php echo $jam_mulai; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Jam Selesai</label>
+                                        <input type="text" class="form-control" name="jam_selesai" value="<?php echo $jam_selesai; ?>" required>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Hari</label>
+                                        <input type="text" class="form-control" name="hari" value="<?php echo $hari; ?>" required>
                                     </div>
                                     
                                 </div>
