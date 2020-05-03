@@ -215,7 +215,7 @@ public function kelompok_pelajaran() {
 	}
 	public function akd_jadwal() {
 		$d['judul'] = "Data Jadwal Pelajaran";
-		$d['akd_mapel'] = $this->Master_model->akd_jadwal();
+		$d['akd_jadwal'] = $this->Master_model->akd_jadwal();
 		$this->load->view('admin/top',$d);
 		$this->load->view('admin/menu');
 		$this->load->view('admin/jadwal/v_jadwal');

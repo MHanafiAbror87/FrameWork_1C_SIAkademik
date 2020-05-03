@@ -32,12 +32,14 @@
                     <th>Jam Mulai</th>
                     <th>Jam Selesai</th>
                     <th>Hari</th>
+                    <th>Daftar Hadir</th>
+                    <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 				<?php
 					$no = 1;
-					foreach($jadwal->result_array() as $data) { ?>
+					foreach($akd_jadwal->result_array() as $data) { ?>
 				<tr>
 						<td><?php echo $no; ?></td>
             <td><?php echo $data['kode_jadwal_pelajaran']; ?></td>
@@ -50,6 +52,9 @@
 						<td><?php echo $data['jam_mulai']; ?></td>
             <td><?php echo $data['jam_selesai']; ?></td>
 						<td><?php echo $data['hari']; ?></td>
+            <td style="text-align:center;">
+              <a class="btn btn-primary btn-xs" href="<?php echo base_url().'admin/Akademik/akd_jadwal_detail/'.$data['kode_jadwal_pelajaran']; ?>"><i class="fa fa-edit"> </i> Buka Presensi Siswa </a>
+              </td>
               <td style="text-align:center;">
               <a class="btn btn-primary btn-xs" href="<?php echo base_url().'admin/Akademik/akd_jadwal_detail/'.$data['kode_jadwal_pelajaran']; ?>"><i class="fa fa-edit"> </i> Detail </a>
               <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Akademik/akd_jadwal_edit/'.$data['kode_jadwal_pelajaran']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
