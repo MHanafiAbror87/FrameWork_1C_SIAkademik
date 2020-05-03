@@ -178,10 +178,22 @@ class Pengguna extends CI_Controller
 
 		if ($tipe == "add") {
 			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]'");
+			$cek2 = $this->db->query("SELECT nik FROM pgn_guru WHERE nik = '$in[nik]'");
+			$cek3 = $this->db->query("SELECT nuptk FROM pgn_guru WHERE nuptk = '$in[nuptk]'");
+			$cek4 = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]'");
 
 			if ($cek->num_rows() > 0) {
 				$this->session->set_flashdata("error", "Gagal Input. NIPTK Sudah Digunakan");
 				redirect("admin/pengguna/guru_tambah/");
+			} else if ($cek2->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. NIK Sudah Digunakan");
+				redirect("admin/pengguna/guru_tambah");
+			} else if ($cek3->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. NUPTK Sudah Digunakan");
+				redirect("admin/pengguna/guru_tambah");
+			} else if ($cek4->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. Kode Guru Sudah Digunakan");
+				redirect("admin/pengguna/guru_tambah");
 			} else {
 				$this->db->insert("pgn_guru", $in);
 				$this->session->set_flashdata("success", "Tambah Data Guru Berhasil");
@@ -189,9 +201,21 @@ class Pengguna extends CI_Controller
 			}
 		} elseif ($tipe = 'edit') {
 			$where['kode_guru'] 	= $this->input->post('kode_guru');
-			$cek = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
+			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND nip != '$where[nip]'");
+			$cek2 = $this->db->query("SELECT nik FROM pgn_guru WHERE nik = '$in[nik]' AND nik != '$where[nik]'");
+			$cek3 = $this->db->query("SELECT nuptk FROM pgn_guru WHERE nuptk = '$in[nuptk]' AND nuptk != '$where[nuptk]'");
+			$cek4 = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
 			if ($cek->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.  Kode Guru Sudah Digunakan");
+				$this->session->set_flashdata("error", "Gagal Input.  Data Sudah Digunakan");
+				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
+			} else if ($cek2->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. Data Sudah Digunakan");
+				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
+			} else if ($cek3->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input.Data Sudah Digunakan");
+				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
+			} else if ($cek4->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. Data udah Digunakan");
 				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
 			} else {
 				$in['aktif_guru'] = $this->input->post("aktif_guru");
