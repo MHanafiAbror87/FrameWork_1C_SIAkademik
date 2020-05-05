@@ -189,5 +189,91 @@ public function kelompok_pelajaran() {
 		} else {
 			redirect(base_url());
 		}
-}
+	}
+	public function akd_mapel_detail($kode_mapel) {
+		$d['judul'] = "Data Mata Pelajaran";
+		$d['judul2'] = "Detail";
+		$get = $this->Master_model->akd_mapel_detail($kode_mapel);
+		if($get->num_rows() == 0) {
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		} else { 
+			$data = $get->row();
+			$d['kode_mapel'] = $data->kode_mapel;
+			$d['id_kelompok_pelajaran'] = $data->id_kelompok_pelajaran;
+			$d['kode_jurusan'] = $data->kode_jurusan;
+			$d['nama_mapel'] = $data->nama_mapel;
+			$d['kkm'] = $data->kkm;
+			$d['aktif_mapel'] = $data->aktif_mapel;
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/mapel/v_detail_akd_mapel');
+			$this->load->view('admin/bottom');	
+		}
+	}
+	public function akd_jadwal() {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['akd_jadwal'] = $this->Master_model->akd_jadwal();
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/jadwal/v_jadwal');
+		$this->load->view('admin/bottom');	
+	}
+	public function akd_jadwal_tambah() {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['judul2'] = "Tambah";
+        $d['tipe'] = 'add';
+        $d['kode_jadwal_pelajaran'] = "";
+        $d['kode_guru'] = "";
+		$d['kode_mapel'] = "";
+		$d['kode_kelas'] = "";
+		$d['id_tahun_ajaran'] = "";
+        $d['kode_jurusan'] = "";
+        $d['kode_ruangan'] = "";
+		$d['jam_mulai'] = "";
+		$d['jam_selesai'] = "";
+		$d['hari'] = "";
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/mapel/v_tambah_jadwal');
+		$this->load->view('admin/bottom');
+		
+	}
+	
+	public function akd_jadwal_hapus($kode_jadwal_pelajaran)
+	{
+		$this->Master_model->akd_jadwal_hapus($kode_jadwal_pelajaran);
+		$this->session->set_flashdata('flash','dihapus');
+		redirect('admin/Akademik/akd_jadwal');
+	}
+	
+	public function akd_jadwal_detail($kode_mapel) {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['judul2'] = "Detail";
+		$get = $this->Master_model->akd_jadwal_detail($kode_jadwal_pelajaran);
+		if($get->num_rows() == 0) {
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		} else { 
+			$data = $get->row();
+			$d['kode_jadwal_pelajaran'] = $data->kode_jadwal_pelajaran;
+			$d['kode_guru'] = $data->kode_guru;
+			$d['kode_mapel'] = $data->kode_mapel;
+			$d['kode_kelas'] = $data->kode_kelas;
+			$d['id_tahun_ajaran'] = $data->id_tahun_ajaran;
+			$d['kode_jurusan'] = $data->kode_jurusan;
+			$d['kode_ruangan'] = $data->kode_ruangan;
+			$d['jam_mulai'] = $data->jam_mulai;
+			$d['jam_selesai'] = $data->jam_selesai;
+			$d['hari'] = $data->hari;
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/jadwal/v_detail_jadwal');
+			$this->load->view('admin/bottom');	
+		}
+	}
 }
