@@ -1,59 +1,86 @@
 <?php
 $tahun_ajaran = $this->db->query("SELECT tahun_ajaran, semester FROM mst_tahun_ajaran WHERE aktif_tahun_ajaran = 1")->row();
-
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>SIAKAD SMKN 7 JEMBER</title>
-    <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.css">
-  <!-- Animate -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/animate.css-master/animate.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ASIS | Akademik</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/jvectormap/jquery-jvectormap.css">
+  
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/toastr/build/toastr.min.css" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
-  <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/toastr/build/toastr.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/select2/dist/css/select2.css">
+
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+  
+  <link href="<?php echo base_url(); ?>asset/fullcalendar.css" rel="stylesheet">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>asset/dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- jQuery 3 -->
+  <script src="<?php echo base_url(); ?>asset/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>asset/dist/js/jquery.tabledit.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="<?php echo base_url(); ?>asset/fullcalendar.js"></script>
+
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed ">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-success navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
 
+  <header class="main-header ">
 
-    <ul class="animated fadeInDown navbar-nav ml-auto">
-      <div class="btn-group btn-group-sm">
-                    <span class="btn bg-warning brand-text font-weight-light text-white text-uppercase"><b>TP : <?php echo $tahun_ajaran->tahun_ajaran.' | Semester '.$tahun_ajaran->semester; ?></b></span>
-                  <a href="<?php echo base_url(); ?>logout" class="btn bg-navy btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="nav-icon fas fa-sign-out-alt text-white"></i>
-                    </span>
-                    <span class="brand-text font-weight-light text-white text-uppercase"><b>Logout</b></span>
-                  </a>
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini" ><b>SIA</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>SMKN 7 JEMBER </b></span>
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+         
+          <!-- Notifications: style can be found in dropdown.less -->
+         
+          <li><a href ="">TP : <?php echo $tahun_ajaran->tahun_ajaran.' | Semester '.$tahun_ajaran->semester; ?></a></li>
+        <li><a href="<?php echo base_url(); ?>logout">Ubah Password</a></li>
+        <li><a href="<?php echo base_url(); ?>logout">Logout</a></li>
+        </ul>
       </div>
-    </ul>
 
-  </nav>
-  <!-- /.navbar -->
+    </nav>
+  </header>
