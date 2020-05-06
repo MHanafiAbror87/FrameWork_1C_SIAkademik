@@ -23,7 +23,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://localhost/FrameWork_1C_SIAkademik/';
+=======
+$config['base_url'] = 'http://localhost/FrameWork_1C_SIAkademik';
+>>>>>>> e6b62b7396268bfd7077c6166745b95401b1971e
 
 /*
 |--------------------------------------------------------------------------
