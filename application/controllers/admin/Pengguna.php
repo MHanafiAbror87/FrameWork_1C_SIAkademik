@@ -276,4 +276,377 @@ class Pengguna extends CI_Controller
 		$this->session->set_flashdata('flash', 'dihapus');
 		redirect('admin/pengguna/guru');
 	}
+
+//Pengguna siswa
+	
+	public function proses_tampil_siswa()
+	{
+		$kode_kelas = $this->input->post("kode_kelas");
+		redirect("admin/pengguna/siswa/" . $kode_kelas);
+	}
+
+	public function siswa($kode_kelas = "")
+	{
+		$d['judul'] = "Data Siswa";
+		if (!empty($kode_kelas)) {
+			$d['siswa'] = $this->Pengguna_model->siswa($kode_kelas);
+			$d['kode_kelas'] = $kode_kelas;
+		} else {
+			$d['siswa'] = "";
+			$d['kode_kelas'] = "";
+		}
+		$d['combo_kelas'] = $this->Combo_model->combo_kelas($kode_kelas);
+		$this->load->view('admin/top', $d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/siswa/siswa');
+		$this->load->view('admin/bottom');
+	}
+
+	public function biodata()
+	{
+		$kode_siswa = $this->session->userdata("id");
+
+		$get = $this->Pengguna_model->siswa_edit($kode_siswa);
+
+		$d['judul'] = "Data Siswa";
+		$d['judul2'] = "Ubah";
+		$d['tipe'] = 'edit';
+		$data = $get->row();
+		$d['nis'] = $data->nis;
+		$d['nisn'] = $data->nisn;
+		$d['nama_siswa'] = $data->nama_siswa;
+		$d['jenis_kelamin'] = $data->jenis_kelamin;
+		$d['tanggal_lahir'] = date("d-m-Y", strtotime($data->tanggal_lahir));
+		$d['tempat_lahir'] = $data->tempat_lahir;
+		$d['alamat_jalan'] = $data->alamat_jalan;
+		$d['kelurahan'] = $data->kelurahan;
+		$d['kecamatan'] = $data->kecamatan;
+		$d['hp'] = $data->hp;
+		$d['telepon'] = $data->telepon;
+		$d['email'] = $data->email;
+		$d['agama'] = $data->agama;
+		$d['angkatan'] = $data->angkatan;
+		$d['foto'] = $data->foto;
+		$d['combo_kelas'] = $this->Combo_model->combo_kelas($data->kode_kelas);
+		$d['kode_siswa'] = $data->kode_siswa;
+		$d['aktif_siswa'] = $data->aktif_siswa;
+
+		$d['nama_ayah'] = $data->nama_ayah;
+		$d['pendidikan_ayah'] = $data->pendidikan_ayah;
+		$d['pekerjaan_ayah'] = $data->pekerjaan_ayah;
+		$d['no_hp_ayah'] = $data->no_hp_ayah;
+
+		$d['nama_ibu'] = $data->nama_ibu;
+		$d['pendidikan_ibu'] = $data->pendidikan_ibu;
+		$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
+		$d['no_hp_ibu'] = $data->no_hp_ibu;
+
+		$d['nama_wali'] = $data->nama_wali;
+		$d['pendidikan_wali'] = $data->pendidikan_wali;
+		$d['pekerjaan_wali'] = $data->pekerjaan_wali;
+		$d['no_hp_wali'] = $data->no_hp_wali;
+
+		$d['nama_sekolah'] = $data->nama_sekolah;
+		$d['status_sekolah'] = $data->status_sekolah;
+		$d['alamat_sekolah'] = $data->alamat_sekolah;
+		$d['tahun_lulus'] = $data->tahun_lulus;
+
+		$this->load->view('top', $d);
+		$this->load->view('menu_siswa');
+		$this->load->view('admin/siswa/biodata');
+		$this->load->view('bottom');
+	}
+
+
+
+	public function siswa_detail($nis)
+	{
+		$d['judul'] = "Data Siswa";
+		$d['judul2'] = "Detail";
+		$get = $this->Pengguna_model->siswa_detail($nis);
+		if ($get->num_rows() == 0) {
+			$this->load->view('admin/top', $d);
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		} else {
+			$data = $get->row();
+			$d['kode_siswa'] = $data->kode_siswa;
+			$d['nis'] = $data->nis;
+			$d['nisn'] = $data->nisn;
+			$d['nama_siswa'] = $data->nama_siswa;
+			$d['jenis_kelamin'] = $data->jenis_kelamin;
+			$d['tempat_lahir'] = $data->tempat_lahir;
+			$d['tanggal_lahir'] = date("d-m-Y", strtotime($data->tanggal_lahir));
+			$d['agama'] = $data->agama;
+			$d['alamat_jalan'] = $data->alamat_jalan;
+			$d['kelurahan'] = $data->kelurahan;
+			$d['kecamatan'] = $data->kecamatan;
+			$d['kode_pos'] = $data->kode_pos;
+			$d['hp'] = $data->hp;
+			$d['telepon'] = $data->telepon;
+			$d['email'] = $data->email;
+			$d['foto'] = $data->foto;
+			$d['angkatan'] = $data->angkatan;
+			$d['kode_kelas'] = $data->kode_kelas;
+			$d['password'] = $data->password;
+			$d['aktif_siswa'] = $data->aktif_siswa;
+
+			$d['nama_ayah'] = $data->nama_ayah;
+			$d['pekerjaan_ayah'] = $data->pekerjaan_ayah;
+			$d['pendidikan_ayah'] = $data->pendidikan_ayah;
+			$d['no_hp_ayah'] = $data->no_hp_ayah;
+
+			$d['nama_ibu'] = $data->nama_ibu;
+			$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
+			$d['pendidikan_ibu'] = $data->pendidikan_ibu;
+			$d['no_hp_ibu'] = $data->no_hp_ibu;
+
+			$d['nama_wali'] = $data->nama_wali;
+			$d['pekerjaan_wali'] = $data->pekerjaan_wali;
+			$d['pendidikan_wali'] = $data->pendidikan_wali;
+			$d['no_hp_wali'] = $data->no_hp_wali;
+
+			$this->load->view('admin/top', $d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/siswa/siswa_detail');
+			$this->load->view('admin/bottom');
+		}
+	}
+
+	public function siswa_tambah()
+	{
+		$d['judul'] = "Data Siswa";
+		$d['judul2'] = "Tambah";
+		$d['tipe'] = 'add';
+		$d['kode_siswa'] = "";
+			$d['nis'] = "";
+			$d['nisn'] = "";
+			$d['nama_siswa'] = "";
+			$d['jenis_kelamin'] = "";
+			$d['tempat_lahir'] = "";
+			$d['tanggal_lahir'] = "";
+			$d['agama'] = "";
+			$d['alamat_jalan'] = "";
+			$d['kelurahan'] = "";
+			$d['kecamatan'] = "";
+			$d['kode_pos'] = "";
+			$d['hp'] = "";
+			$d['telepon'] = "";
+			$d['email'] = "";
+			$d['foto'] = "";
+			$d['angkatan'] = "";
+			$d['kode_kelas'] = "";
+			$d['password'] = "";
+			$d['aktif_siswa'] = "";
+
+			$d['nama_ayah'] = "";
+			$d['pekerjaan_ayah'] = "";
+			$d['pendidikan_ayah'] = "";
+			$d['no_hp_ayah'] = "";
+
+			$d['nama_ibu'] = "";
+			$d['pekerjaan_ibu'] = "";
+			$d['pendidikan_ibu'] = "";
+			$d['no_hp_ibu'] = "";
+
+			$d['nama_wali'] = "";
+			$d['pekerjaan_wali'] = "";
+			$d['pendidikan_wali'] = "";
+			$d['no_hp_wali'] = "";
+
+		$this->load->view('admin/top', $d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/siswa/siswa_tambah');
+		$this->load->view('admin/bottom');
+	}
+
+
+	public function siswa_edit($kode_siswa)
+	{
+		$cek = $this->db->query("SELECT kode_siswa FROM pgn_siswa WHERE kode_siswa = '$kode_siswa'");
+		if ($cek->num_rows() > 0) {
+			$d['judul'] = "Data Siswa";
+			$d['judul2'] = "Ubah";
+			$d['tipe'] = 'edit';
+			$get = $this->Pengguna_model->siswa_edit($kode_siswa);
+			$data = $get->row();
+			$d['kode_siswa'] = $data->kode_siswa;
+			$d['nis'] = $data->nis;
+			$d['nisn'] = $data->nisn;
+			$d['nama_siswa'] = $data->nama_siswa;
+			$d['jenis_kelamin'] = $data->jenis_kelamin;
+			$d['tempat_lahir'] = $data->tempat_lahir;
+			if (!empty($data->tanggal_lahir) && $data->tanggal_lahir != '0000-00-00') {
+				$d['tanggal_lahir'] = date("d-m-Y", strtotime($data->tanggal_lahir));
+			} else {
+				$d['tanggal_lahir'] = '';
+			}
+			$d['agama'] = $data->agama;
+			$d['alamat_jalan'] = $data->alamat_jalan;
+			$d['kelurahan'] = $data->kelurahan;
+			$d['kecamatan'] = $data->kecamatan;
+			$d['kode_pos'] = $data->kode_pos;
+			$d['hp'] = $data->hp;
+			$d['telepon'] = $data->telepon;
+			$d['email'] = $data->email;
+			$d['foto'] = $data->foto;
+			$d['angkatan'] = $data->angkatan;
+			$d['kode_kelas'] = $data->kode_kelas;
+			$d['password'] = $data->password;
+			$d['aktif_siswa'] = $data->aktif_siswa;
+
+			$d['nama_ayah'] = $data->nama_ayah;
+			$d['pekerjaan_ayah'] = $data->pekerjaan_ayah;
+			$d['pendidikan_ayah'] = $data->pendidikan_ayah;
+			$d['no_hp_ayah'] = $data->no_hp_ayah;
+
+			$d['nama_ibu'] = $data->nama_ibu;
+			$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
+			$d['pendidikan_ibu'] = $data->pendidikan_ibu;
+			$d['no_hp_ibu'] = $data->no_hp_ibu;
+
+			$d['nama_wali'] = $data->nama_wali;
+			$d['pekerjaan_wali'] = $data->pekerjaan_wali;
+			$d['pendidikan_wali'] = $data->pendidikan_wali;
+			$d['no_hp_wali'] = $data->no_hp_wali;
+
+			$this->load->view('admin/top', $d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/siswa/siswa_tambah');
+			$this->load->view('admin/bottom');
+		} else {
+			$this->load->view('admin/top', $d);
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		}
+	}
+
+	public function siswa_save()
+	{
+		$tipe = $this->input->post("tipe");
+
+		$d['kode_siswa'] = $this->input->post("kode_siswa");
+		$d['nis'] = $this->input->post("nis");
+		$d['nisn'] = $this->input->post("nisn");
+		$d['nama_siswa'] = $this->input->post("nama_siswa");
+		$d['jenis_kelamin'] = $this->input->post("jenis_kelamin");
+		$d['tempat_lahir'] = $this->input->post("tempat_lahir");
+		$d['tanggal_lahir'] = date("Y-m-d", strtotime($this->input->post("tanggal_lahir")));
+		$d['agama'] = $this->input->post("agama");
+		$d['alamat_jalan'] = $this->input->post("alamat_jalan");
+		$d['kelurahan'] = $this->input->post("kelurahan");
+		$d['kecamatan'] = $this->input->post("kecamatan");
+		$d['kode_pos'] = $this->input->post("kode_pos");
+		$d['hp'] = $this->input->post("hp");
+		$d['telepon'] = $this->input->post("telepon");
+		$d['email'] = $this->input->post("email");
+		$d['angkatan'] = $this->input->post("angkatan");
+		$d['kode_kelas'] = $this->input->post("kode_kelas");
+		$d['password'] = $this->input->post("password");
+		$d['aktif_siswa'] = $this->input->post("aktif_siswa");
+
+		$d['nama_ayah'] = $this->input->post("nama_ayah");
+		$d['pekerjaan_ayah'] = $this->input->post("pekerjaan_ayah");
+		$d['pendidikan_ayah'] = $this->input->post("pendidikan_ayah");
+		$d['no_hp_ayah'] = $this->input->post("no_hp_ayah");
+
+		$d['nama_ibu'] = $this->input->post("nama_ibu");
+		$d['pekerjaan_ibu'] = $this->input->post("pekerjaan_ibu");
+		$d['pendidikan_ibu'] = $this->input->post("pendidikan_ibu");
+		$d['no_hp_ibu'] = $this->input->post("no_hp_ibu");
+
+		$d['nama_wali'] = $this->input->post("nama_wali");
+		$d['pekerjaan_wali'] = $this->input->post("pekerjaan_wali");
+		$d['pendidikan_wali'] = $this->input->post("pendidikan_wali");
+		$d['no_hp_wali'] = $this->input->post("no_hp_wali");
+
+		$config['upload_path'] = './upload/siswa';
+		$config['allowed_types'] = 'jpg|png';
+		$config['encrypt_name']	= TRUE;
+		$config['remove_spaces']	= TRUE;
+		$config['max_size']     = '0';
+		$config['max_width']  	= '0';
+		$config['max_height']  	= '0';
+
+		$this->load->library('upload', $config);
+
+
+		if ($tipe == "add") {
+			$cek = $this->db->query("SELECT nis FROM pgn_siswa WHERE nis = '$in[nis]'");
+
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. NISN Sudah Digunakan");
+				redirect("admin/pengguna/siswa_tambah/");
+			} else {
+				$this->db->insert("pgn_siswa", $in);
+				$this->session->set_flashdata("success", "Tambah Data Siswa Berhasil");
+				redirect("admin/pengguna/siswa");
+			}
+		} elseif ($tipe = 'edit') {
+			$where['kode_siswa'] 	= $this->input->post('kode_siswa');
+			$cek = $this->db->query("SELECT kode_siswa FROM pgn_siswa WHERE kode_siswa = '$in[kode_siswa]' AND kode_siswa != '$where[kode_siswa]'");
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input.  Kode Siswa Sudah Digunakan");
+				redirect("admin/pengguna/siswa_edit/" . $this->input->post("kode_siswa"));
+			} else {
+				$in['aktif_siswa'] = $this->input->post("aktif_siswa");
+				$this->db->update("pgn_siswa", $in, $where);
+				$this->session->set_flashdata("success", "Ubah Data Siswa Berhasil");
+				redirect("admin/pengguna/siswa");
+			}
+		} else {
+			redirect(base_url());
+		}
+	}
+
+	public function siswa_import()
+	{
+		$unggah['upload_path']   = './upload/';
+		$unggah['allowed_types'] = 'xlsx';
+		$unggah['file_name']     = 'siswa_import';
+		$unggah['overwrite']     = true;
+		$unggah['max_size']      = 5120;
+
+		$this->load->library('upload');
+
+		$this->upload->initialize($unggah);
+		if ($this->upload->do_upload('file_import')) {
+			$file_excel = new unggahexcel('upload/siswa_import.xlsx', null);
+
+			if (count($file_excel->Sheets()) == 1) {
+				$baris = 1;
+
+				foreach ($file_excel as $kolom) {
+					if ($baris >= 2) {
+						$cek = $this->db->query("SELECT nis FROM pgn_siswa WHERE nis = '$kolom[0]'");
+						if ($cek->num_rows() == 0) {
+							$in['nis'] = $kolom[0];
+							$in['nama_siswa'] = $kolom[1];
+							$in['jenis_kelamin'] = $kolom[2];
+							$in['kode_kelas'] = $kolom[3];
+							$in['password'] = $kolom[0];
+							$this->db->insert("pgn_siswa", $in);
+						}
+					}
+					$baris++;
+				}
+
+				$this->session->set_flashdata("success", "Berhasil Import Data Siswa");
+			} else {
+				$this->session->set_flashdata("error", "Gagal Import Data");
+			}
+			unlink('./upload/siswa_import.xlsx');
+			redirect("pengguna/siswa");
+		} else {
+			redirect(base_url());
+		}
+	}
+	public function siswa_hapus($nis)
+	{
+		$this->Pengguna_model->siswa_hapus($nip);
+		$this->session->set_flashdata('flash', 'dihapus');
+		redirect('admin/pengguna/siswa');
+	}
 }

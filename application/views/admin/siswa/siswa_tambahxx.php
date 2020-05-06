@@ -150,7 +150,7 @@
                                 <div class="col-xs-4">
                                     <div class="form-group">
                                         <label>Kelas</label>
-                                        <select class="form-control" name="id_kelas" required>
+                                        <select class="form-control" name="kode_kelas" required>
                                            <?php echo $combo_kelas; ?>
                                         </select>
                                     </div>

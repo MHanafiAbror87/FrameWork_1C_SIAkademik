@@ -154,7 +154,7 @@
                                             <div class="col-xs-12">
                                                 <div class="form-group">
                                                     <label>Kelas</label>
-                                                    <select class="form-control" name="id_kelas" disabled>
+                                                    <select class="form-control" name="kode_kelas" disabled>
                                                         <?php echo $combo_kelas; ?>
                                                     </select>
                                                 </div>

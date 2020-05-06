@@ -24,7 +24,7 @@
                     <th>No</th>
                     <th>Kode Mata Pelajaran</th>
                     <th>ID Kelompok Pelajaran</th>
-                    <th>Jurusan</th>
+                    <th>Kode Jurusan</th>
                     <th>Nama Mata Pelajaran</th>
                     <th>KKM</th>
                     <th>Status</th>
@@ -34,7 +34,7 @@
                 <tbody>
 				<?php
 					$no = 1;
-					foreach($akd_mapel->result_array() as $data) { ?>
+					foreach($mapel->result_array() as $data) { ?>
 				<tr>
 						<td><?php echo $no; ?></td>
             <td><?php echo $data['kode_mapel']; ?></td>
@@ -44,7 +44,6 @@
             <td><?php echo $data['kkm']; ?></td>
 						<td><?php echo $data['aktif_mapel']; ?></td>
               <td style="text-align:center;">
-              <a class="btn btn-primary btn-xs" href="<?php echo base_url().'admin/Akademik/akd_mapel_detail/'.$data['kode_mapel']; ?>"><i class="fa fa-edit"> </i> Detail </a>
               <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Akademik/akd_mapel_edit/'.$data['kode_mapel']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
               <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Akademik/akd_mapel_hapus/'.$data['kode_mapel']; ?>"><i class="fa fa-edit"> </i> Hapus</a>
                         

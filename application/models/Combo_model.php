@@ -74,19 +74,20 @@ class Combo_model extends CI_Model {
 		return $hasil;
 	}
 
-	public function combo_kelas($id="") {
+	public function combo_kelas($kode_kelas="") {
 		$hasil = "";
-		$q = $this->db->query("SELECT id_kelas,nama_kelas FROM mst_kelas WHERE aktif_kelas = 1 ORDER BY id_kelas ASC");
+		$q = $this->db->query("SELECT kode_kelas,nama_kelas FROM mst_kelas WHERE aktif_kelas = 1 ORDER BY kode_kelas ASC");
 		$hasil .= '<option selected="selected" value>PILIH KELAS</option>';
 		foreach($q->result() as $h) {
-			if($id == $h->id_kelas) {
-				$hasil .= '<option value="'.$h->id_kelas.'" selected="selected">'.$h->nama_kelas.'</option>';
+			if($kode_kelas == $h->kode_kelas) {
+				$hasil .= '<option value="'.$h->kode_kelas.'" selected="selected">'.$h->nama_kelas.'</option>';
 			} else {
-				$hasil .= '<option value="'.$h->id_kelas.'">'.$h->nama_kelas.'</option>';
+				$hasil .= '<option value="'.$h->kode_kelas.'">'.$h->nama_kelas.'</option>';
 			}
 		}
 		return $hasil;
 	}
+
 
 	public function combo_mapel($id="") {
 		$hasil = "";

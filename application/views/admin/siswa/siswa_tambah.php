@@ -5,13 +5,13 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-user"></i> Siswa</a></li>
-            <li><a href="<?php echo base_url(); ?>siswa/siswa"><?php echo $judul; ?></a></li>
+            <li><a href="<?php echo base_url(); ?>admin/pengguna/siswa"><?php echo $judul; ?></a></li>
             <li class="active"><?php echo $judul2; ?></li>
         </ol>
     </section>
     <section class="content">
 
-        <form action="<?php echo base_url(); ?>siswa/siswa_save" method="post" enctype="multipart/form-data">
+        <form action="<?php echo base_url(); ?>admin/pengguna/siswa_save" method="post" enctype="multipart/form-data">
             <!-- Main row -->
             <div class="row">
                 <div class="col-xs-9">
@@ -36,7 +36,7 @@
                         <?php } ?>
 
                         <input type="hidden" name="tipe" value="<?php echo $tipe; ?>">
-                        <input type="hidden" name="id_siswa" value="<?php echo $id_siswa; ?>">
+                        <input type="hidden" name="kode_siswa" value="<?php echo $kode_siswa; ?>">
                         <input type="hidden" name="foto_lama" value="<?php echo $foto; ?>">
                         <div class="box-body">
                             <div class="nav-tabs-custom">
@@ -159,7 +159,7 @@
                                             <div class="col-xs-12">
                                                 <div class="form-group">
                                                     <label>Kelas</label>
-                                                    <select class="form-control" name="id_kelas" required>
+                                                    <select class="form-control" name="kode_kelas">
                                                         <?php echo $combo_kelas; ?>
                                                     </select>
                                                 </div>
@@ -167,32 +167,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane" id="tab_2">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Nama Sekolah</label>
-                                                    <input type="text" class="form-control" name="nama_sekolah" value="<?php echo $nama_sekolah; ?>">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Status Sekolah</label>
-                                                    <select class="form-control" name="status_sekolah" >
-                                                        <option value>PILIH</option>
-                                                        <option value="SWASTA" <?php if($status_sekolah == 'SWASTA') echo 'selected'; ?>>SWASTA</option>
-                                                        <option value="NEGERI" <?php if($status_sekolah == 'NEGERI') echo 'selected'; ?>>NEGERI</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Alamat Sekolah</label>
-                                                    <input type="text" class="form-control" name="alamat_sekolah" value="<?php echo $alamat_sekolah; ?>">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Tahun Lulus</label>
-                                                    <input type="number" class="form-control" name="tahun_lulus" value="<?php echo $tahun_lulus; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="tab-pane" id="tab_3">
                                         <div class="row">
