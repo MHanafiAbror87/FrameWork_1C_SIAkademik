@@ -82,4 +82,23 @@ public function akd_mapel_hapus($kode_mapel)
 	$this->db->where('kode_mapel', $kode_mapel);
 	$this->db->delete('akd_mapel');
 }
+
+public function tahun_ajaran()
+	{
+		$q = $this->db->query("SELECT * FROM mst_tahun_ajaran ORDER BY id_tahun_ajaran DESC");
+		return $q;
+	}
+
+	public function tahun_ajaran_edit($id)
+	{
+		$q = $this->db->query("SELECT * FROM mst_tahun_ajaran WHERE id_tahun_ajaran = '$id'");
+		return $q;
+	}
+
+	public function tahun_ajaran_hapus($id)
+	{
+		$this->db->where('id_tahun_ajaran', $id);
+		$this->db->delete('mst_tahun_ajaran');
+	}
+
 }

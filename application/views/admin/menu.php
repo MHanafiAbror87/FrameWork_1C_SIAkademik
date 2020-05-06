@@ -52,7 +52,7 @@ if(!empty($data_siswa->foto)) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>master/tahun_ajaran"><i class="fa fa-angle-double-right"></i> Tahun Ajaran</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/master/tahun_ajaran"><i class="fa fa-angle-double-right"></i> Tahun Ajaran</a></li>
             <li><a href="<?php echo base_url(); ?>master/jurusan"><i class="fa fa-angle-double-right"></i> Ruangan</a></li>
             <li><a href="<?php echo base_url(); ?>master/kelas"><i class="fa fa-angle-double-right"></i> Jurusan</a></li>
            <li><a href="<?php echo base_url(); ?>master/mapel"><i class="fa fa-angle-double-right"></i> Kelas</a></li>
@@ -67,7 +67,7 @@ if(!empty($data_siswa->foto)) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>master/tahun_ajaran"><i class="fa fa-angle-double-right"></i> Kelompok Mata Pelajaran</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Akademik/kelompok_pelajaran"><i class="fa fa-angle-double-right"></i> Kelompok Mata Pelajaran</a></li>
             <li><a href="<?php echo base_url(); ?>master/jurusan"><i class="fa fa-angle-double-right"></i> Mata Pelajaran</a></li>
             <li><a href="<?php echo base_url(); ?>master/kelas"><i class="fa fa-angle-double-right"></i> Jadwal Pelajaran</a></li>
            <li><a href="<?php echo base_url(); ?>master/mapel"><i class="fa fa-angle-double-right"></i> Kompetensi Dasar</a></li>
@@ -83,7 +83,7 @@ if(!empty($data_siswa->foto)) {
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>master/tahun_ajaran"><i class="fa fa-angle-double-right"></i> Presensi</a></li>
-            <li><a href="<?php echo base_url(); ?>master/jurusan"><i class="fa fa-angle-double-right"></i> Rekap Presensi</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/absensi/rekap_absensi"><i class="fa fa-angle-double-right"></i> Rekap Presensi</a></li>
             </ul>
         </li>
 
