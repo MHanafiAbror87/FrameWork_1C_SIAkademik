@@ -4,7 +4,7 @@
         <?php echo $judul; ?>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i> Master Coba</a></li>
+        <li><a href="#"><i class="fa fa-user"></i> Master</a></li>
         <li><a href="<?php echo base_url(); ?>master/jurusan"><?php echo $judul; ?></a></li>
         <li class="active"><?php echo $judul2; ?></li>
       </ol>
