@@ -311,26 +311,26 @@ $this->load->view('admin/bottom');
 		redirect('admin/master/ruangan');
 	}
 	public function ruangan_save() {
-			$tipe = $this->input->post("tipe");	
-			$in['nama_ruangan'] = $this->input->post("nama_ruangan");
-            $in['kode_ruangan'] = $this->input->post("kode_ruangan");
-            $in['kapasitas_belajar'] = $this->input->post("kapasitas_belajar");
-			
-			if($tipe == "add") {
-				$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$in[kode_ruangan]'");
-                $cek2 = $this->db->query("SELECT nama_ruangan FROM mst_ruangan WHERE nama_ruangan = '$in[nama_ruangan]'");
-                $cek3 = $this->db->query("SELECT kapasitas_belajar FROM mst_ruangan WHERE kapasitas_belajar = '$in[kapasitas_belajar]'");
-				if($cek->num_rows() > 0) { 
-					$this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
-					redirect("admin/master/ruangan_tambah");	
-				} else if($cek2->num_rows() > 0) { 
-					$this->session->set_flashdata("error","Gagal Input. Nama Ruangan Sudah Digunakan");
-                    redirect("admin/master/ruangan_tambah");	
-               	} else { 	
-					$this->db->insert("mst_ruangan",$in);
-					$this->session->set_flashdata("success","Tambah Data Ruangan Berhasil");
-					redirect("admin/master/ruangan");	
-				}
+		$tipe = $this->input->post("tipe");	
+		$in['nama_ruangan'] = $this->input->post("nama_ruangan");
+		$in['kode_ruangan'] = $this->input->post("kode_ruangan");
+		$in['kapasitas_belajar'] = $this->input->post("kapasitas_belajar");
+		
+		if($tipe == "add") {
+			$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$in[kode_ruangan]'");
+			$cek2 = $this->db->query("SELECT nama_ruangan FROM mst_ruangan WHERE nama_ruangan = '$in[nama_ruangan]'");
+			$cek3 = $this->db->query("SELECT kapasitas_belajar FROM mst_ruangan WHERE kapasitas_belajar = '$in[kapasitas_belajar]'");
+			if($cek->num_rows() > 0) { 
+				$this->session->set_flashdata("error","Gagal Input. Kode Ruangan Sudah Digunakan");
+				redirect("admin/master/ruangan_tambah");	
+			} else if($cek2->num_rows() > 0) { 
+				$this->session->set_flashdata("error","Gagal Input. Nama Ruangan Sudah Digunakan");
+				redirect("admin/master/ruangan_tambah");	
+			   } else { 	
+				$this->db->insert("mst_ruangan",$in);
+				$this->session->set_flashdata("success","Tambah Data Ruangan Berhasil");
+				redirect("admin/master/ruangan");	
+			}
 			} elseif($tipe = 'edit') {
 				$where['kode_ruangan'] 	= $this->input->post('kode_ruangan');
 				$cek = $this->db->query("SELECT kode_ruangan FROM mst_ruangan WHERE kode_ruangan = '$in[kode_ruangan]' AND kode_ruangan != '$where[kode_ruangan]'");
@@ -354,6 +354,6 @@ $this->load->view('admin/bottom');
             }
         
     }
-    
+
     
 }

@@ -35,14 +35,29 @@
                         <?php } ?>
                         <table id="datatb" class="table table-bordered table-hover">
                             <tr>
-                                <td style="width:200px;font-weight:bold;">Kode Mata Pelajaran</td>
+                                <td style="width:200px;font-weight:bold;">Kode Jadwal Pelajaran</td>
                                 <td style="width:10px;">:</td>
+                                <td><?php echo $kode_jadwal_pelajaran; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kode Guru</td>
+                                <td>:</td>
+                                <td><?php echo $kode_guru; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kode Mata Pelajaran</td>
+                                <td>:</td>
                                 <td><?php echo $kode_mapel; ?></td>
                             </tr>
                             <tr>
-                                <td style="font-weight:bold;">ID Kelompok Pelajaran</td>
+                                <td style="font-weight:bold;">Kode Kelas</td>
                                 <td>:</td>
-                                <td><?php echo $id_kelompok_pelajaran; ?></td>
+                                <td><?php echo $kode_kelas; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">ID Tahun Ajaran</td>
+                                <td>:</td>
+                                <td><?php echo $id_tahun_ajaran; ?></td>
                             </tr>
                             <tr>
                                 <td style="font-weight:bold;">Kode Jurusan</td>
@@ -50,28 +65,32 @@
                                 <td><?php echo $kode_jurusan; ?></td>
                             </tr>
                             <tr>
-                                <td style="font-weight:bold;">Nama Mata Pelajaran</td>
+                                <td style="font-weight:bold;">Kode Ruangan</td>
                                 <td>:</td>
-                                <td><?php echo $nama_mapel; ?></td>
+                                <td><?php echo $kode_ruangan; ?></td>
                             </tr>
                             <tr>
-                                <td style="font-weight:bold;">KKM</td>
+                                <td style="font-weight:bold;">Jam Mulai</td>
                                 <td>:</td>
-                                <td><?php echo $kkm; ?></td>
+                                <td><?php echo $jam_mulai; ?></td>
                             </tr>
                             <tr>
-                                <td style="font-weight:bold;">Status</td>
+                                <td style="font-weight:bold;">Jam Selesai</td>
                                 <td>:</td>
-                                <td><?php if ($aktif_mapel == '1') echo 'AKTIF';
-                                    else echo 'TIDAK AKTIF'; ?></td>
+                                <td><?php echo $jam_selesai; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">hari</td>
+                                <td>:</td>
+                                <td><?php echo $hari; ?></td>
                             </tr>
                         </table>
                         
     
     
-                        <a href="<?php echo base_url() . 'admin/Akademik/akd_mapel_edit/' . $kode_mapel; ?>" class="btn btn-success btn-block"><b><i class="fa fa-edit"> </i> Ubah Data</b></a>
+                        <a href="<?php echo base_url() . 'admin/Akademik/akd_jadwal_edit/' . $kode_jadwal_pelajaran; ?>" class="btn btn-success btn-block"><b><i class="fa fa-edit"> </i> Ubah Data</b></a>
 
-                        <a href="<?php echo base_url() . 'admin/Akademik/akd_mapel/'; ?>" class="btn btn-default btn-block"><b><i class="fa fa-arrow-left"> </i> Kembali</b></a>
+                        <a href="<?php echo base_url() . 'admin/Akademik/akd_jadwal/'; ?>" class="btn btn-default btn-block"><b><i class="fa fa-arrow-left"> </i> Kembali</b></a>
                     </div>
                 </div>
                 <!-- /.box -->
