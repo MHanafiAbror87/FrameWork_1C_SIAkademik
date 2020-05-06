@@ -53,15 +53,9 @@ if(!empty($data_siswa->foto)) {
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>admin/master/tahun_ajaran"><i class="fa fa-angle-double-right"></i> Tahun Ajaran</a></li>
-<<<<<<< HEAD
-            <li><a href="<?php echo base_url(); ?>master/jurusan"><i class="fa fa-angle-double-right"></i> Ruangan</a></li>
-            <li><a href="<?php echo base_url(); ?>master/kelas"><i class="fa fa-angle-double-right"></i> Jurusan</a></li>
-           <li><a href="<?php echo base_url(); ?>master/mapel"><i class="fa fa-angle-double-right"></i> Kelas</a></li>
-=======
             <li><a href="<?php echo base_url(); ?>admin/master/ruangan"><i class="fa fa-angle-double-right"></i> Ruangan</a></li>
             <li><a href="<?php echo base_url(); ?>admin/master/jurusan"><i class="fa fa-angle-double-right"></i> Jurusan</a></li>
            <li><a href="<?php echo base_url(); ?>admin/master/kelas"><i class="fa fa-angle-double-right"></i> Kelas</a></li>
->>>>>>> e6b62b7396268bfd7077c6166745b95401b1971e
             <li><a href="<?php echo base_url(); ?>master/predikat"><i class="fa fa-angle-double-right"></i> Rentang Nilai / Predikat</a></li>
           </ul>
         </li>
