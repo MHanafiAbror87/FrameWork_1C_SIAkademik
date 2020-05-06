@@ -100,7 +100,7 @@ if(!empty($data_siswa->foto)) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>admin/nilai/nilai_uts"><i class="fa fa-angle-double-right"></i> Cetak Raport UTS</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Cetak Raport UTS</a></li>
             <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Cetak Raport</a></li>
           </ul>
         </li>
