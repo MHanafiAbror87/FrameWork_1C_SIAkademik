@@ -4,13 +4,13 @@ class absensi_model extends CI_Model
 {
 
 
-	public function rekap_absensi()
+	public function hasil_rekap()
 	{
 		$q = $this->db->query("SELECT * FROM absensi_siswa ORDER BY id_absensi_siswa DESC");
 		return $q;
 	}
 
-	public function akd_jadwal()
+	public function jadwal()
 	{
 		$q = $this->db->query("SELECT * FROM akd_jadwal_pelajaran ORDER BY kode_jadwal_pelajaran DESC");
 		return $q;

@@ -18,24 +18,24 @@ class Absensi extends CI_Controller
 		redirect(base_url());
 	}
 
-    public function akd_jadwal() {
-		$d['judul'] = "Data Jadwal Pelajaran";
-		$d['jadwal'] = $this->Master_model->akd_jadwal();
+    public function rekap_absensi() {
+		$d['judul'] = "Data Rekap Presensi";
+		$d['jadwal'] = $this->absensi_model->jadwal();
 		$this->load->view('admin/top',$d);
 		$this->load->view('admin/menu');
 		$this->load->view('admin/data_absensi/rekap_absensi');
 		$this->load->view('admin/bottom');	
     }
     
-	public function rekap_absensi()
+	public function hasil_rekap()
 	{
-		$d['judul'] = "Data Rekap Absensi";
-		$d['rekap_absensi'] = $this->absensi_model->rekap_absensi();
-		$this->load->view('admin/top', $d);
-		$this->load->view('admin/menu');
-		$this->load->view('admin/data_absensi/rekap_absensi');
-		$this->load->view('admin/bottom');
-	}
+	 	$d['judul'] = "Rekap Data Absensi Siswa Pada";
+	 	$d['hasil_rekap'] = $this->absensi_model->hasil_rekap();
+	 	$this->load->view('admin/top', $d);
+	 	$this->load->view('admin/menu');
+	 	$this->load->view('admin/data_absensi/hasil_rekap');
+	 	$this->load->view('admin/bottom');
+	 }
 
 	
 }

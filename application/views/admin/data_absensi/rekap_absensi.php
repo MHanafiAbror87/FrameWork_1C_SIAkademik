@@ -13,12 +13,10 @@
       <div class="row">
 			<div class="col-xs-12">
           <div class="box">
-						<div class="box-header">
-              <a class="btn btn-danger btn-sm" href="<?php echo base_url(); ?>admin/Absensi/rekap_absensi_tambah"><i class="fa fa-plus"> </i> Tambah Data</a>
-            </div>
+						
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="datatb" class="table table-bordered table-hover">
+            <table id="datatb" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>No</th>
@@ -42,14 +40,15 @@
             <td><?php echo $data['kode_jadwal_pelajaran']; ?></td>
             <td><?php echo $data['kode_kelas']; ?></td>
 						<td><?php echo $data['kode_guru']; ?></td>
-						<td><?php echo $data['kode_semester']; ?></td>
-            <td><?php echo $data['kode_ruangan']; ?></td>
-						<td><?php echo $data['jam_mulai']; ?></td>
+            <td><?php echo $data['hari']; ?></td>
+            <td><?php echo $data['jam_mulai']; ?></td>
             <td><?php echo $data['jam_selesai']; ?></td>
-						<td><?php echo $data['hari']; ?></td>
+            <td><?php echo $data['kode_ruangan']; ?></td>
+						<td><?php echo $data['id_tahun_ajaran']; ?></td>
+						
               <td style="text-align:center;">
-              <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Akademik/kelompok_pelajaran_edit/'.$data['id_kelompok_pelajaran']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
-              <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Akademik/hapus/'.$data['id_kelompok_pelajaran']; ?>"><i class="fa fa-edit"> </i> Hapus</a>
+              <a class="btn btn-danger btn-xs" href="<?php echo base_url().'admin/Absensi/hasil_rekap/'.$data['kode_jadwal_pelajaran']; ?>"><span class='glyphicon glyphicon-th'></span> Tampilkan </a>
+              
                         
                       </td>
                     </tr>
