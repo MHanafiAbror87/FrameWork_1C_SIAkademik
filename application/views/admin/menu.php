@@ -105,7 +105,7 @@
         </ul>
       </li>
       <li>
-        <a href="<?php echo base_url(); ?>admin/kalender/kalender">
+        <a href="<?php echo base_url(); ?>admin/kalender">
           <i class="fa fa-tags"></i> <span>Kalender Akademik</span>
         </a>
       </li>
