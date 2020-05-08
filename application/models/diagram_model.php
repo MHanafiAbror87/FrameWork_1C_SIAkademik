@@ -10,9 +10,6 @@ class Diagram_model extends CI_Model
     }
     public function batang()
     {
-        return $this->db->query('select kode_jurusan,angkatan,count(*) as jumlah
-        from pgn_siswa
-        group by kode_jurusan,angkatan')->result_array();
     }
 
     public function kelas()

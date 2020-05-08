@@ -3,7 +3,7 @@
         <div class="row">
 
 
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <div class="box box-warning">
                     <div class="box-header with-border">
                         <h3 class="box-title">Agenda / Catatan</h3>
