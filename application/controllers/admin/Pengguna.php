@@ -201,20 +201,9 @@ class Pengguna extends CI_Controller
 			}
 		} elseif ($tipe = 'edit') {
 			$where['kode_guru'] 	= $this->input->post('kode_guru');
-			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND nip != '$where[nip]'");
-			$cek2 = $this->db->query("SELECT nik FROM pgn_guru WHERE nik = '$in[nik]' AND nik != '$where[nik]'");
-			$cek3 = $this->db->query("SELECT nuptk FROM pgn_guru WHERE nuptk = '$in[nuptk]' AND nuptk != '$where[nuptk]'");
-			$cek4 = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
+
+			$cek = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
 			if ($cek->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.  Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek2->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input. Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek3->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek4->num_rows() > 0) {
 				$this->session->set_flashdata("error", "Gagal Input. Data udah Digunakan");
 				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
 			} else {
@@ -277,8 +266,8 @@ class Pengguna extends CI_Controller
 		redirect('admin/pengguna/guru');
 	}
 
-//Pengguna siswa
-	
+	//Pengguna siswa
+
 	public function proses_tampil_siswa()
 	{
 		$kode_kelas = $this->input->post("kode_kelas");
@@ -420,40 +409,40 @@ class Pengguna extends CI_Controller
 		$d['judul2'] = "Tambah";
 		$d['tipe'] = 'add';
 		$d['kode_siswa'] = "";
-			$d['nis'] = "";
-			$d['nisn'] = "";
-			$d['nama_siswa'] = "";
-			$d['jenis_kelamin'] = "";
-			$d['tempat_lahir'] = "";
-			$d['tanggal_lahir'] = "";
-			$d['agama'] = "";
-			$d['alamat_jalan'] = "";
-			$d['kelurahan'] = "";
-			$d['kecamatan'] = "";
-			$d['kode_pos'] = "";
-			$d['hp'] = "";
-			$d['telepon'] = "";
-			$d['email'] = "";
-			$d['foto'] = "";
-			$d['angkatan'] = "";
-			$d['kode_kelas'] = "";
-			$d['password'] = "";
-			$d['aktif_siswa'] = "";
+		$d['nis'] = "";
+		$d['nisn'] = "";
+		$d['nama_siswa'] = "";
+		$d['jenis_kelamin'] = "";
+		$d['tempat_lahir'] = "";
+		$d['tanggal_lahir'] = "";
+		$d['agama'] = "";
+		$d['alamat_jalan'] = "";
+		$d['kelurahan'] = "";
+		$d['kecamatan'] = "";
+		$d['kode_pos'] = "";
+		$d['hp'] = "";
+		$d['telepon'] = "";
+		$d['email'] = "";
+		$d['foto'] = "";
+		$d['angkatan'] = "";
+		$d['kode_kelas'] = "";
+		$d['password'] = "";
+		$d['aktif_siswa'] = "";
 
-			$d['nama_ayah'] = "";
-			$d['pekerjaan_ayah'] = "";
-			$d['pendidikan_ayah'] = "";
-			$d['no_hp_ayah'] = "";
+		$d['nama_ayah'] = "";
+		$d['pekerjaan_ayah'] = "";
+		$d['pendidikan_ayah'] = "";
+		$d['no_hp_ayah'] = "";
 
-			$d['nama_ibu'] = "";
-			$d['pekerjaan_ibu'] = "";
-			$d['pendidikan_ibu'] = "";
-			$d['no_hp_ibu'] = "";
+		$d['nama_ibu'] = "";
+		$d['pekerjaan_ibu'] = "";
+		$d['pendidikan_ibu'] = "";
+		$d['no_hp_ibu'] = "";
 
-			$d['nama_wali'] = "";
-			$d['pekerjaan_wali'] = "";
-			$d['pendidikan_wali'] = "";
-			$d['no_hp_wali'] = "";
+		$d['nama_wali'] = "";
+		$d['pekerjaan_wali'] = "";
+		$d['pendidikan_wali'] = "";
+		$d['no_hp_wali'] = "";
 
 		$this->load->view('admin/top', $d);
 		$this->load->view('admin/menu');

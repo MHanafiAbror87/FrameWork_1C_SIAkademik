@@ -353,7 +353,102 @@ $this->load->view('admin/bottom');
 				redirect(base_url());
             }
         
-    }
-    
+	}
+	
+    public function tahun_ajaran()
+	{
+		$d['judul'] = "Data Tahun Ajaran";
+		$d['tahun_ajaran'] = $this->Master_model->tahun_ajaran();
+		$this->load->view('admin/top', $d);
+		$this->load->view('admin/menu');
+		$this->load->view('master/tahun_ajaran');
+		$this->load->view('admin/bottom');
+	}
+
+	public function tahun_ajaran_tambah()
+	{
+		$d['judul'] = "Data Tahun Ajaran";
+		$d['judul2'] = "Tambah";
+		$d['tipe'] = 'add';
+		$d['id_tahun_ajaran'] = "";
+		$d['tahun_ajaran'] = "";
+		$d['semester'] = "";
+		$d['aktif_tahun_ajaran'] = "";
+		$this->load->view('admin/top', $d);
+		$this->load->view('admin/menu');
+		$this->load->view('master/tahun_ajaran_tambah');
+		$this->load->view('admin/bottom');
+	}
+
+
+	public function tahun_ajaran_edit($id)
+	{
+		$cek = $this->db->query("SELECT id_tahun_ajaran FROM mst_tahun_ajaran WHERE id_tahun_ajaran = '$id'");
+		if ($cek->num_rows() > 0) {
+			$d['judul'] = "Data Tahun Ajaran";
+			$d['judul2'] = "Ubah";
+			$d['tipe'] = 'edit';
+			$get = $this->Master_model->tahun_ajaran_edit($id);
+			$data = $get->row();
+			$d['id_tahun_ajaran'] = $data->id_tahun_ajaran;
+			$d['tahun_ajaran'] = $data->tahun_ajaran;
+			$d['semester'] = $data->semester;
+			$d['aktif_tahun_ajaran'] = $data->aktif_tahun_ajaran;
+			$this->load->view('admin/top', $d);
+			$this->load->view('admin/menu');
+			$this->load->view('master/tahun_ajaran_tambah');
+			$this->load->view('admin/bottom');
+		} else {
+			$this->load->view('admin/top');
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		}
+	}
+
+	public function tahun_ajaran_hapus($id)
+	{
+		$this->Master_model->tahun_ajaran_hapus($id);
+		$this->session->set_flashdata('flash', 'dihapus');
+		redirect('admin/Master/tahun_ajaran');
+	}
+
+	public function tahun_ajaran_save()
+	{
+		$tipe = $this->input->post("tipe");
+		$in['id_tahun_ajaran'] = $this->input->post("id_tahun_ajaran");
+		$in['tahun_ajaran'] = $this->input->post("tahun_ajaran");
+		$in['semester'] = $this->input->post("semester");
+
+		if ($tipe == "add") {
+			$cek = $this->db->query("SELECT id_tahun_ajaran FROM mst_tahun_ajaran WHERE id_tahun_ajaran = '$in[id_tahun_ajaran]'");
+			$cek2 = $this->db->query("SELECT tahun_ajaran FROM mst_tahun_ajaran WHERE tahun_ajaran = '$in[tahun_ajaran]'");
+			$cek3 = $this->db->query("SELECT semester FROM mst_tahun_ajaran WHERE semester = '$in[semester]'");
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. ID Sudah Digunakan");
+				redirect("admin/master/tahun_ajaran_tambah");
+			} else {
+				$in['aktif_tahun_ajaran'] = $this->input->post("aktif_tahun_ajaran");
+				$this->db->insert("mst_tahun_ajaran", $in);
+				$this->session->set_flashdata("success", "Tambah Data Berhasil");
+				redirect("admin/master/tahun_ajaran");
+			}
+		} elseif ($tipe = 'edit') {
+			$where['id_tahun_ajaran'] 	= $this->input->post('id_tahun_ajaran');
+			$cek = $this->db->query("SELECT id_tahun_ajaran FROM mst_tahun_ajaran WHERE id_tahun_ajaran = '$in[id_tahun_ajaran]' AND id_tahun_ajaran != '$where[id_tahun_ajaran]'");
+
+			if ($cek->num_rows() > 0) {
+				$this->session->set_flashdata("error", "Gagal Input. ID Sudah Digunakan");
+				redirect("admin/master/tahun_ajaran/tahun_ajaran_edit/" . $this->input->post("id_tahun_ajaran"));
+			} else {
+				$in['aktif_tahun_ajaran'] = $this->input->post("aktif_tahun_ajaran");
+				$this->db->update("mst_tahun_ajaran", $in, $where);
+				$this->session->set_flashdata("success", "Ubah Data Berhasil");
+				redirect("admin/master/tahun_ajaran");
+			}
+		} else {
+			redirect(base_url());
+		}
+	}
     
 }
