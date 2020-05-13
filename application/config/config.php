@@ -24,12 +24,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 $config['base_url'] = 'http://localhost/FrameWork_1C_SIAkademik';
 =======
+=======
+>>>>>>> 41f4b9e3631a878e87671dd100deffd06775baea
 
 $config['base_url'] = 'http://localhost/FrameWork_1C_SIAkademik/';
 
 
+<<<<<<< HEAD
+>>>>>>> 41f4b9e3631a878e87671dd100deffd06775baea
+=======
 >>>>>>> 41f4b9e3631a878e87671dd100deffd06775baea
 
 /*
