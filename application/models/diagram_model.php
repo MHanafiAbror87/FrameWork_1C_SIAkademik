@@ -10,10 +10,6 @@ class Diagram_model extends CI_Model
     }
     public function batang()
     {
-<<<<<<< HEAD
-        
-=======
->>>>>>> 8bbe858dce73814afb85e234531eee9a8d48a5a4
     }
 
     public function kelas()
