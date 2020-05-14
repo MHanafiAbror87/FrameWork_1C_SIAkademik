@@ -49,7 +49,7 @@ if (!empty($data_siswa->foto)) {
         </a>
       </li>
       <li>
-        <a href="<?php echo base_url(); ?>diganti ya">
+        <a href="<?php echo base_url(); ?>siswa/quiz/tampilan">
           <i class="fa fa-dashboard"></i> <span>Quiz/Ujian Online</span>
         </a>
       </li>
