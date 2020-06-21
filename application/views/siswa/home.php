@@ -1,115 +1,199 @@
 <div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            <?php echo $judul; ?>
+        </h1>
+
+    </section>
     <section class="content">
+        <!-- Main row -->
         <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body box-profile">
+                        <?php if ($this->session->flashdata('success')) { ?>
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                                <span style="text-align: left;"><?php echo $this->session->flashdata('success'); ?></span>
+                            </div>
+                        <?php } ?>
+
+                        <?php if ($this->session->flashdata('error')) { ?>
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                                <span style="text-align: left;"><?php echo $this->session->flashdata('danger'); ?></span>
+                            </div>
+                        <?php } ?>
 
 
-            <div class="col-md-9">
-                <div class="box box-warning">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Agenda / Catatan</h3>
+                        <?php if (!empty($foto)) { ?>
+                            <img class="profile-user-img img-responsive" src="<?php echo base_url() . 'upload/siswa/' . $foto; ?>" alt="<?php echo $nama_siswa; ?>">
+                        <?php } else { ?>
+                            <img class="profile-user-img img-responsive" src="<?php echo base_url() . 'upload/noimage.jpg'; ?>" alt="<?php echo $nama_siswa; ?>">
+                        <?php } ?>
+                        <table id="datatb" class="table table-bordered table-hover">
+                            <tr>
+                                <td style="width:200px;font-weight:bold;">Kode Siswa</td>
+                                <td style="width:10px;">:</td>
+                                <td><?php echo $kode_siswa; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;font-weight:bold;">NIS</td>
+                                <td style="width:10px;">:</td>
+                                <td><?php echo $nis; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">NISN</td>
+                                <td>:</td>
+                                <td><?php echo $nisn; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Nama Siswa</td>
+                                <td>:</td>
+                                <td><?php echo $nama_siswa; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Jenis Kelamin</td>
+                                <td>:</td>
+                                <td><?php echo $jenis_kelamin; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Tempat, Tanggal Lahir</td>
+                                <td>:</td>
+                                <td><?php echo $tempat_lahir . ', ' . $tanggal_lahir; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Agama</td>
+                                <td>:</td>
+                                <td><?php echo $agama; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Alamat</td>
+                                <td>:</td>
+                                <td><?php echo $alamat_jalan; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kelurahan</td>
+                                <td>:</td>
+                                <td><?php echo $kelurahan; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kecamatan</td>
+                                <td>:</td>
+                                <td><?php echo $kecamatan; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kode Pos</td>
+                                <td>:</td>
+                                <td><?php echo $kode_pos; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">No Handphone</td>
+                                <td>:</td>
+                                <td><?php echo $hp; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Telepon</td>
+                                <td>:</td>
+                                <td><?php echo $telepon; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Email</td>
+                                <td>:</td>
+                                <td><?php echo $email; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Angkatan</td>
+                                <td>:</td>
+                                <td><?php echo $angkatan; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Kode Kelas</td>
+                                <td>:</td>
+                                <td><?php echo $kode_kelas; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Password</td>
+                                <td>:</td>
+                                <td><?php echo $password; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Nama Ayah</td>
+                                <td>:</td>
+                                <td><?php echo $nama_ayah; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pekerjaan Ayah</td>
+                                <td>:</td>
+                                <td><?php echo $pekerjaan_ayah; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pendidikan Ayah</td>
+                                <td>:</td>
+                                <td><?php echo $pendidikan_ayah; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">No Hp</td>
+                                <td>:</td>
+                                <td><?php echo $no_hp_ayah; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Nama Ibu</td>
+                                <td>:</td>
+                                <td><?php echo $nama_ibu; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pekerjaan Ibu</td>
+                                <td>:</td>
+                                <td><?php echo $pekerjaan_ibu; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pendidikan Ibu</td>
+                                <td>:</td>
+                                <td><?php echo $pendidikan_ibu; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">No Hp</td>
+                                <td>:</td>
+                                <td><?php echo $no_hp_ibu; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Nama Wali</td>
+                                <td>:</td>
+                                <td><?php echo $nama_wali; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pekerjaan Wali</td>
+                                <td>:</td>
+                                <td><?php echo $pekerjaan_wali; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Pendidikan Wali</td>
+                                <td>:</td>
+                                <td><?php echo $pendidikan_wali; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">No Hp</td>
+                                <td>:</td>
+                                <td><?php echo $no_hp_wali; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Status</td>
+                                <td>:</td>
+                                <td><?php if ($aktif_siswa == '1') echo 'AKTIF';
+                                    else echo 'TIDAK AKTIF'; ?></td>
+                            </tr>
+                        </table>
 
                     </div>
-                    <div class="box-body">
-                        <div id="calendar"></div>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
+                <!-- /.box -->
             </div>
-
-            <!-- /.col -->
         </div>
+        <!-- /.row -->
     </section>
 </div>
-
-<div class="modal fade in" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="<?php echo base_url(); ?>app/agenda_save" method="post" accept-charset="utf-8">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addModalLabel">Tambah Catatan / Agenda</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="add" value="1">
-                    <label>Tanggal*</label>
-                    <p id="labelDate"></p>
-                    <input type="hidden" name="date" class="form-control" id="inputDate">
-                    <label>Keterangan*</label>
-                    <textarea name="info" id="inputDesc" class="form-control"></textarea><br />
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btnSimpan" class="btn btn-success">Simpan</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="<?php echo base_url(); ?>app/agenda_hapus" method="post" accept-charset="utf-8">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="delModalLabel">Hapus Catatan / Agenda</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="idDel">
-                    <label>Tahun</label>
-                    <p id="showYear"></p>
-                    <label>Tanggal</label>
-                    <p id="showDate"></p>
-                    <label>Keterangan*</label>
-                    <p id="showDesc"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script>
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'prevYear,nextYear',
-        },
-
-        events: "<?php echo base_url(); ?>home/get_calendar",
-
-        dayClick: function(date, jsEvent, view) {
-
-            var tanggal = date.getDate();
-            var bulan = date.getMonth() + 1;
-            var tahun = date.getFullYear();
-            var fullDate = tahun + '-' + bulan + '-' + tanggal;
-
-            $('#addModal').modal('toggle');
-            $('#addModal').modal('show');
-
-            $("#inputDate").val(fullDate);
-            $("#labelDate").text(fullDate);
-            $("#inputYear").val(date.getFullYear());
-            $("#labelYear").text(date.getFullYear());
-        },
-
-        eventClick: function(calEvent, jsEvent, view) {
-            $("#delModal").modal('toggle');
-            $("#delModal").modal('show');
-            $("#idDel").val(calEvent.id);
-            $("#showYear").text(calEvent.year);
-
-            var tgl = calEvent.start.getDate();
-            var bln = calEvent.start.getMonth() + 1;
-            var thn = calEvent.start.getFullYear();
-
-            $("#showDate").text(tgl + '-' + bln + '-' + thn);
-            $("#showDesc").text(calEvent.title);
-        }
-
-
-    });
-</script>
