@@ -1,7 +1,7 @@
 <?php
 header("Content-type: application/vnd-ms-excel");
 $tgl = date("d-m-Y");
-$judul = "DATA_SISWA_" . strtoupper($nama_kelas).".xls";
+$judul = "DATA_SISWA_" . strtoupper($nama_kelas) . ".xls";
 header("Content-Disposition: attachment; filename=$judul");
 
 ?>
@@ -52,7 +52,8 @@ header("Content-Disposition: attachment; filename=$judul");
                     <td><?php echo $data['nis']; ?></td>
                     <td><?php echo $data['nama_siswa']; ?></td>
                     <td><?php echo $data['jenis_kelamin']; ?></td>
-                    <td><?php if (!empty($data['tanggal_lahir'])) echo $data['tempat_lahir'].', '; echo date("d-m-Y", strtotime($data['tanggal_lahir'])); ?></td>
+                    <td><?php if (!empty($data['tanggal_lahir'])) echo $data['tempat_lahir'] . ', ';
+                        echo date("d-m-Y", strtotime($data['tanggal_lahir'])); ?></td>
                     <td><?php echo $data['nama_kelas']; ?></td>
                     <td><?php echo $data['angkatan']; ?></td>
                     <td>'<?php echo $data['hp']; ?></td>
@@ -63,12 +64,12 @@ header("Content-Disposition: attachment; filename=$judul");
                     <td><?php echo $data['kecamatan']; ?></td>
                     <td><?php echo $data['agama']; ?></td>
                     <td style="text-align:center;"><?php
-                                                            if ($data['aktif_siswa'] == '1') {
-                                                                echo '<label class="label label-success">AKTIF</label>';
-                                                            } else {
-                                                                echo '<label class="label label-default">TIDAK AKTIF</label>';
-                                                            }
-                                                            ?>
+                                                    if ($data['aktif_siswa'] == '1') {
+                                                        echo '<label class="label label-success">AKTIF</label>';
+                                                    } else {
+                                                        echo '<label class="label label-default">TIDAK AKTIF</label>';
+                                                    }
+                                                    ?>
                     </td>
                     <td><?php echo $data['nama_sekolah']; ?></td>
                     <td><?php echo $data['status_sekolah']; ?></td>
@@ -88,7 +89,7 @@ header("Content-Disposition: attachment; filename=$judul");
                     <td>'<?php echo $data['no_hp_wali']; ?></td>
                 </tr>
             <?php $no++;
-                } ?>
+            } ?>
 
         <?php } else {
             echo '<tr><td colspan="9">Silahkan Pilih Kelas Terlebih Dahulu</td></tr>';

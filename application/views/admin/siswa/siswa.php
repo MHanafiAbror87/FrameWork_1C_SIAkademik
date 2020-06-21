@@ -30,7 +30,7 @@
                 </form>
               </div>
               <div class="col-xs-8 text-right">
-                <a class="btn btn-primary" href="<?php echo base_url().'siswa/siswa_export/'.$kode_kelas; ?>" target="_blank"><i class="fa fa-download"> </i> Export Ke Excel</a>
+                <a class="btn btn-primary" href="<?php echo base_url() . 'admin/siswa/siswa_export/' . $kode_kelas; ?>" target="_blank"><i class="fa fa-download"> </i> Export Ke Excel</a>
                 <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-upload"> </i> Import Dari Excel</a>
                 <a class="btn btn-danger" href="<?php echo base_url(); ?>admin/pengguna/siswa_tambah"><i class="fa fa-plus"> </i> Tambah Data</a>
               </div>
@@ -60,7 +60,7 @@
                       <td><?php echo $data['nis']; ?></td>
                       <td><?php echo $data['nama_siswa']; ?></td>
                       <td><?php echo $data['jenis_kelamin']; ?></td>
-                      <td><?php if(!empty($data['tanggal_lahir'])) echo date("d-m-Y", strtotime($data['tanggal_lahir'])); ?></td>
+                      <td><?php if (!empty($data['tanggal_lahir'])) echo date("d-m-Y", strtotime($data['tanggal_lahir'])); ?></td>
                       <td><?php echo $data['nama_kelas']; ?></td>
                       <td><?php echo $data['angkatan']; ?></td>
                       <td style="text-align:center;"><?php
@@ -72,11 +72,12 @@
                                                       ?>
                       </td>
                       <td style="text-align:center;">
-                        <a class="btn btn-primary btn-xs" href="<?php echo base_url() . 'siswa/siswa_detail/' . $data['nis']; ?>"><i class="fa fa-search"> </i> Detail</a>
-                        <a class="btn btn-danger btn-xs" href="<?php echo base_url() . 'siswa/siswa_edit/' . $data['kode_siswa']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
+                        <a class="btn btn-primary btn-xs" href="<?php echo base_url() . 'admin/Pengguna/siswa_detail/' . $data['nis']; ?>"><i class="fa fa-search"> </i> Detail</a>
+                        <a class="btn btn-success btn-xs" href="<?php echo base_url() . 'admin/Pengguna/siswa_edit/' . $data['kode_siswa']; ?>"><i class="fa fa-edit"> </i> Ubah</a>
+                        <a class="btn btn-danger btn-xs" href="<?php echo base_url() . 'admin/pengguna/siswa_hapus/' . $data['nis']; ?>"><i class="fa fa-trash"> </i> Hapus </a>
                       </td>
                     </tr>
-                    <?php $no++;
+                  <?php $no++;
                   } ?>
 
                 <?php } else {
