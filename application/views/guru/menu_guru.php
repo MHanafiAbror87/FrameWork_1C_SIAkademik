@@ -40,7 +40,7 @@
           <i class="fa fa-circle"></i> <span>Data Bahan Dan Tugas</span>
         </a>
       </li>
-      
+
       <li>
         <a href="<?php echo base_url(); ?>calendar">
           <i class="fa fa-users"></i> <span>Quiz/UjianOnline</span>
@@ -77,7 +77,7 @@
         </ul>
       </li>
       <li>
-        <a href="<?php echo base_url(); ?>calendar">
+        <a href="<?php echo base_url(); ?>guru/Calendar">
           <i class="fa fa-tags"></i> <span>Kalender Akademik</span>
         </a>
       </li>
