@@ -68,8 +68,8 @@ if(!empty($data_siswa->foto)) {
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>admin/Akademik/kelompok_pelajaran"><i class="fa fa-angle-double-right"></i> Kelompok Mata Pelajaran</a></li>
-            <li><a href="<?php echo base_url(); ?>master/jurusan"><i class="fa fa-angle-double-right"></i> Mata Pelajaran</a></li>
-            <li><a href="<?php echo base_url(); ?>master/kelas"><i class="fa fa-angle-double-right"></i> Jadwal Pelajaran</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Akademik/akd_mapel"><i class="fa fa-angle-double-right"></i> Mata Pelajaran</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Akademik/akd_jadwal"><i class="fa fa-angle-double-right"></i> Jadwal Pelajaran</a></li>
            <li><a href="<?php echo base_url(); ?>master/mapel"><i class="fa fa-angle-double-right"></i> Kompetensi Dasar</a></li>
             <li><a href="<?php echo base_url(); ?>master/predikat"><i class="fa fa-angle-double-right"></i> Rentang Nilai / Predikat</a></li>
           </ul>

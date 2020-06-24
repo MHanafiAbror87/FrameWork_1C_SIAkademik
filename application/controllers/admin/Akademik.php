@@ -128,7 +128,7 @@ public function kelompok_pelajaran() {
 	public function akd_mapel_edit($kode_mapel) {
 		$cek = $this->db->query("SELECT kode_mapel FROM akd_mapel WHERE kode_mapel = '$kode_mapel'");
 		if($cek->num_rows() > 0) { 
-			$d['judul'] = "Data Kelompok Pelajaran";
+			$d['judul'] = "Data Mata Pelajaran";
 			$d['judul2'] = "Ubah";
 			$d['tipe'] = 'edit';
 			$get = $this->Master_model->akd_mapel_edit($kode_mapel);
@@ -189,5 +189,135 @@ public function kelompok_pelajaran() {
 		} else {
 			redirect(base_url());
 		}
-}
+	}
+	public function akd_jadwal() {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['akd_jadwal'] = $this->Master_model->akd_jadwal();
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/jadwal/v_jadwal');
+		$this->load->view('admin/bottom');	
+	}
+	public function akd_jadwal_tambah() {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['judul2'] = "Tambah";
+        $d['tipe'] = 'add';
+        $d['kode_jadwal_pelajaran'] = "";
+        $d['kode_guru'] = "";
+		$d['kode_mapel'] = "";
+		$d['kode_kelas'] = "";
+		$d['id_tahun_ajaran'] = "";
+        $d['kode_jurusan'] = "";
+        $d['kode_ruangan'] = "";
+		$d['jam_mulai'] = "";
+		$d['jam_selesai'] = "";
+		$d['hari'] = "";
+		$this->load->view('admin/top',$d);
+		$this->load->view('admin/menu');
+		$this->load->view('admin/jadwal/v_tambah_jadwal');
+		$this->load->view('admin/bottom');
+		
+	}
+	
+	public function akd_jadwal_edit($kode_jadwal_pelajaran) {
+		$cek = $this->db->query("SELECT kode_jadwal_pelajaran FROM akd_jadwal_pelajaran WHERE kode_jadwal_pelajaran = '$kode_jadwal_pelajaran'");
+		if($cek->num_rows() > 0) { 
+			$d['judul'] = "Data Kelompok Pelajaran";
+			$d['judul2'] = "Ubah";
+			$d['tipe'] = 'edit';
+			$get = $this->Master_model->akd_jadwal_edit($kode_jadwal_pelajaran);
+			$data = $get->row();
+			$d['kode_jadwal_pelajaran'] = $data->kode_jadwal_pelajaran;
+            $d['kode_guru'] = $data->kode_guru;
+			$d['kode_mapel'] = $data->kode_mapel;
+			$d['kode_kelas'] = $data->kode_kelas;
+            $d['id_tahun_ajaran'] = $data->id_tahun_ajaran;
+			$d['kode_jurusan'] = $data->kode_jurusan;
+			$d['kode_ruangan'] = $data->kode_ruangan;
+			$d['jam_mulai'] = $data->jam_mulai;
+            $d['jam_selesai'] = $data->jam_selesai;
+			$d['hari'] = $data->hari;
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/jadwal/v_tambah_jadwal');
+			$this->load->view('admin/bottom');
+		} else {
+			$this->load->view('admin/top');
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		}	
+	}
+	public function akd_jadwal_hapus($kode_jadwal_pelajaran)
+	{
+		$this->Master_model->akd_jadwal_hapus($kode_jadwal_pelajaran);
+		$this->session->set_flashdata('flash','dihapus');
+		redirect('admin/Akademik/akd_jadwal');
+	}
+	
+	public function akd_jadwal_detail($kode_jadwal_pelajaran) {
+		$d['judul'] = "Data Jadwal Pelajaran";
+		$d['judul2'] = "Detail";
+		$get = $this->Master_model->akd_jadwal_detail($kode_jadwal_pelajaran);
+		if($get->num_rows() == 0) {
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('404');
+			$this->load->view('admin/bottom');
+		} else { 
+			$data = $get->row();
+			$d['kode_jadwal_pelajaran'] = $data->kode_jadwal_pelajaran;
+			$d['kode_guru'] = $data->kode_guru;
+			$d['kode_mapel'] = $data->kode_mapel;
+			$d['kode_kelas'] = $data->kode_kelas;
+			$d['id_tahun_ajaran'] = $data->id_tahun_ajaran;
+			$d['kode_jurusan'] = $data->kode_jurusan;
+			$d['kode_ruangan'] = $data->kode_ruangan;
+			$d['jam_mulai'] = $data->jam_mulai;
+			$d['jam_selesai'] = $data->jam_selesai;
+			$d['hari'] = $data->hari;
+			$this->load->view('admin/top',$d);
+			$this->load->view('admin/menu');
+			$this->load->view('admin/jadwal/v_detail_jadwal');
+			$this->load->view('admin/bottom');	
+		}
+	}
+	public function akd_jadwal_save() {
+		$tipe = $this->input->post("tipe");	
+		$in['kode_jadwal_pelajaran'] = $this->input->post("kode_jadwal_pelajaran");
+		$in['kode_guru'] = $this->input->post("kode_guru");
+		$in['kode_mapel'] = $this->input->post("kode_mapel");
+		$in['kode_kelas'] = $this->input->post("kode_kelas");
+		$in['id_tahun_ajaran'] = $this->input->post("id_tahun_ajaran");
+		$in['kode_jurusan'] = $this->input->post("kode_jurusan");
+		$in['kode_ruangan'] = $this->input->post("kode_ruangan");
+		$in['jam_mulai'] = $this->input->post("jam_mulai");
+		$in['jam_selesai'] = $this->input->post("jam_selesai");
+		$in['hari'] = $this->input->post("hari");
+		if($tipe == "add") {
+			$cek = $this->db->query("SELECT * FROM akd_jadwal_pelajaran WHERE hari = '$in[hari]' AND jam_mulai != '$where[jam_mulai]' AND kode_guru != '$where[kode_guru]'");
+			if($cek->num_rows() > 0) { 
+				$this->session->set_flashdata("error","Gagal Input. Jadwal Pelajaran Sudah Digunakan");
+				redirect("admin/Akademik/akd_mjadwal_tambah");	
+			} else { 	
+				$this->db->insert("akd_jadwal_pelajaran",$in);
+				$this->session->set_flashdata("success","Tambah Data Jadwal Pelajaran Berhasil");
+				redirect("admin/Akademik/akd_jadwal");	
+			}
+		} elseif($tipe = 'edit') {
+			$where['kode_jadwal_pelajaran'] = $this->input->post('kode_jadwal_pelajaran');
+			$cek = $this->db->query("SELECT * FROM akd_jadwal_pelajaran WHERE hari = '$in[hari]' AND jam_mulai != '$where[jam_mulai]' AND kode_guru != '$where[kode_guru]'");
+			if($cek->num_rows() > 0) { 
+				$this->session->set_flashdata("error","Gagal Update. Jam Pelajaran Sudah Digunakan");
+				redirect("admin/Akademik/akd_mjadwal_tambah");	
+			} else { 	
+				$this->db->update("akd_jadwal_pelajaran",$in);
+				$this->session->set_flashdata("success","Update Data Jadwal Pelajaran Berhasil");
+				redirect("admin/Akademik/akd_jadwal");	
+			}
+			
+		} else {
+			redirect(base_url());
+		}
+	}
 }

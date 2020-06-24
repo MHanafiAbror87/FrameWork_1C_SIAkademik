@@ -83,6 +83,27 @@ public function akd_mapel_hapus($kode_mapel)
 	$this->db->delete('akd_mapel');
 }
 
+public function akd_jadwal()
+	{
+		$q = $this->db->query("SELECT * FROM akd_jadwal_pelajaran ORDER BY kode_jadwal_pelajaran DESC");
+		return $q;
+	}
+	public function akd_jadwal_detail($id)
+	{
+		$q = $this->db->query("SELECT * FROM akd_jadwal_pelajaran WHERE kode_jadwal_pelajaran = '$id'");
+		return $q;
+	}
+	public function akd_jadwal_edit($kode)
+	{
+		$q = $this->db->query("SELECT * FROM akd_jadwal_pelajaran WHERE kode_jadwal_pelajaran = '$kode'");
+		return $q;
+	}
+	public function akd_jadwal_hapus($kode_jadwal_pelajaran)
+	{
+		$this->db->where('kode_jadwal_pelajaran', $kode_jadwal_pelajaran);
+		$this->db->delete('akd_jadwal_pelajaran');
+	}
+
 public function tahun_ajaran()
 	{
 		$q = $this->db->query("SELECT * FROM mst_tahun_ajaran ORDER BY id_tahun_ajaran DESC");
