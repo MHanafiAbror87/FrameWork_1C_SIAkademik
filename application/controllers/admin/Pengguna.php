@@ -201,20 +201,9 @@ class Pengguna extends CI_Controller
 			}
 		} elseif ($tipe = 'edit') {
 			$where['kode_guru'] 	= $this->input->post('kode_guru');
-			$cek = $this->db->query("SELECT nip FROM pgn_guru WHERE nip = '$in[nip]' AND nip != '$where[nip]'");
-			$cek2 = $this->db->query("SELECT nik FROM pgn_guru WHERE nik = '$in[nik]' AND nik != '$where[nik]'");
-			$cek3 = $this->db->query("SELECT nuptk FROM pgn_guru WHERE nuptk = '$in[nuptk]' AND nuptk != '$where[nuptk]'");
-			$cek4 = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
+
+			$cek = $this->db->query("SELECT kode_guru FROM pgn_guru WHERE kode_guru = '$in[kode_guru]' AND kode_guru != '$where[kode_guru]'");
 			if ($cek->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.  Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek2->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input. Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek3->num_rows() > 0) {
-				$this->session->set_flashdata("error", "Gagal Input.Data Sudah Digunakan");
-				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
-			} else if ($cek4->num_rows() > 0) {
 				$this->session->set_flashdata("error", "Gagal Input. Data udah Digunakan");
 				redirect("admin/pengguna/guru_edit/" . $this->input->post("kode_guru"));
 			} else {
@@ -277,8 +266,8 @@ class Pengguna extends CI_Controller
 		redirect('admin/pengguna/guru');
 	}
 
-//Pengguna siswa
-	
+	//Pengguna siswa
+
 	public function proses_tampil_siswa()
 	{
 		$kode_kelas = $this->input->post("kode_kelas");
@@ -336,7 +325,7 @@ class Pengguna extends CI_Controller
 		$d['pekerjaan_ayah'] = $data->pekerjaan_ayah;
 		$d['no_hp_ayah'] = $data->no_hp_ayah;
 
-		$d['nama_ibu'] = $data->nama_ibu;
+		$d['nama_ibu'] = $data->nama_Ibu;
 		$d['pendidikan_ibu'] = $data->pendidikan_ibu;
 		$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
 		$d['no_hp_ibu'] = $data->no_hp_ibu;
@@ -397,7 +386,7 @@ class Pengguna extends CI_Controller
 			$d['pendidikan_ayah'] = $data->pendidikan_ayah;
 			$d['no_hp_ayah'] = $data->no_hp_ayah;
 
-			$d['nama_ibu'] = $data->nama_ibu;
+			$d['nama_ibu'] = $data->nama_Ibu;
 			$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
 			$d['pendidikan_ibu'] = $data->pendidikan_ibu;
 			$d['no_hp_ibu'] = $data->no_hp_ibu;
@@ -420,40 +409,40 @@ class Pengguna extends CI_Controller
 		$d['judul2'] = "Tambah";
 		$d['tipe'] = 'add';
 		$d['kode_siswa'] = "";
-			$d['nis'] = "";
-			$d['nisn'] = "";
-			$d['nama_siswa'] = "";
-			$d['jenis_kelamin'] = "";
-			$d['tempat_lahir'] = "";
-			$d['tanggal_lahir'] = "";
-			$d['agama'] = "";
-			$d['alamat_jalan'] = "";
-			$d['kelurahan'] = "";
-			$d['kecamatan'] = "";
-			$d['kode_pos'] = "";
-			$d['hp'] = "";
-			$d['telepon'] = "";
-			$d['email'] = "";
-			$d['foto'] = "";
-			$d['angkatan'] = "";
-			$d['kode_kelas'] = "";
-			$d['password'] = "";
-			$d['aktif_siswa'] = "";
+		$d['nis'] = "";
+		$d['nisn'] = "";
+		$d['nama_siswa'] = "";
+		$d['jenis_kelamin'] = "";
+		$d['tempat_lahir'] = "";
+		$d['tanggal_lahir'] = "";
+		$d['agama'] = "";
+		$d['alamat_jalan'] = "";
+		$d['kelurahan'] = "";
+		$d['kecamatan'] = "";
+		$d['kode_pos'] = "";
+		$d['hp'] = "";
+		$d['telepon'] = "";
+		$d['email'] = "";
+		$d['foto'] = "";
+		$d['angkatan'] = "";
+		$d['kode_kelas'] = "";
+		$d['password'] = "";
+		$d['aktif_siswa'] = "";
 
-			$d['nama_ayah'] = "";
-			$d['pekerjaan_ayah'] = "";
-			$d['pendidikan_ayah'] = "";
-			$d['no_hp_ayah'] = "";
+		$d['nama_ayah'] = "";
+		$d['pekerjaan_ayah'] = "";
+		$d['pendidikan_ayah'] = "";
+		$d['no_hp_ayah'] = "";
 
-			$d['nama_ibu'] = "";
-			$d['pekerjaan_ibu'] = "";
-			$d['pendidikan_ibu'] = "";
-			$d['no_hp_ibu'] = "";
+		$d['nama_ibu'] = "";
+		$d['pekerjaan_ibu'] = "";
+		$d['pendidikan_ibu'] = "";
+		$d['no_hp_ibu'] = "";
 
-			$d['nama_wali'] = "";
-			$d['pekerjaan_wali'] = "";
-			$d['pendidikan_wali'] = "";
-			$d['no_hp_wali'] = "";
+		$d['nama_wali'] = "";
+		$d['pekerjaan_wali'] = "";
+		$d['pendidikan_wali'] = "";
+		$d['no_hp_wali'] = "";
 
 		$this->load->view('admin/top', $d);
 		$this->load->view('admin/menu');
@@ -501,7 +490,7 @@ class Pengguna extends CI_Controller
 			$d['pendidikan_ayah'] = $data->pendidikan_ayah;
 			$d['no_hp_ayah'] = $data->no_hp_ayah;
 
-			$d['nama_ibu'] = $data->nama_ibu;
+			$d['nama_ibu'] = $data->nama_Ibu;
 			$d['pekerjaan_ibu'] = $data->pekerjaan_ibu;
 			$d['pendidikan_ibu'] = $data->pendidikan_ibu;
 			$d['no_hp_ibu'] = $data->no_hp_ibu;
@@ -527,40 +516,40 @@ class Pengguna extends CI_Controller
 	{
 		$tipe = $this->input->post("tipe");
 
-		$d['kode_siswa'] = $this->input->post("kode_siswa");
-		$d['nis'] = $this->input->post("nis");
-		$d['nisn'] = $this->input->post("nisn");
-		$d['nama_siswa'] = $this->input->post("nama_siswa");
-		$d['jenis_kelamin'] = $this->input->post("jenis_kelamin");
-		$d['tempat_lahir'] = $this->input->post("tempat_lahir");
-		$d['tanggal_lahir'] = date("Y-m-d", strtotime($this->input->post("tanggal_lahir")));
-		$d['agama'] = $this->input->post("agama");
-		$d['alamat_jalan'] = $this->input->post("alamat_jalan");
-		$d['kelurahan'] = $this->input->post("kelurahan");
-		$d['kecamatan'] = $this->input->post("kecamatan");
-		$d['kode_pos'] = $this->input->post("kode_pos");
-		$d['hp'] = $this->input->post("hp");
-		$d['telepon'] = $this->input->post("telepon");
-		$d['email'] = $this->input->post("email");
-		$d['angkatan'] = $this->input->post("angkatan");
-		$d['kode_kelas'] = $this->input->post("kode_kelas");
-		$d['password'] = $this->input->post("password");
-		$d['aktif_siswa'] = $this->input->post("aktif_siswa");
+		$in['kode_siswa'] = $this->input->post("kode_siswa");
+		$in['nis'] = $this->input->post("nis");
+		$in['nisn'] = $this->input->post("nisn");
+		$in['nama_siswa'] = $this->input->post("nama_siswa");
+		$in['jenis_kelamin'] = $this->input->post("jenis_kelamin");
+		$in['tempat_lahir'] = $this->input->post("tempat_lahir");
+		$in['tanggal_lahir'] = date("Y-m-d", strtotime($this->input->post("tanggal_lahir")));
+		$in['agama'] = $this->input->post("agama");
+		$in['alamat_jalan'] = $this->input->post("alamat_jalan");
+		$in['kelurahan'] = $this->input->post("kelurahan");
+		$in['kecamatan'] = $this->input->post("kecamatan");
+		$in['kode_pos'] = $this->input->post("kode_pos");
+		$in['hp'] = $this->input->post("hp");
+		$in['telepon'] = $this->input->post("telepon");
+		$in['email'] = $this->input->post("email");
+		$in['angkatan'] = $this->input->post("angkatan");
+		$in['kode_kelas'] = $this->input->post("kode_kelas");
+		$in['password'] = $this->input->post("password");
+		$in['aktif_siswa'] = $this->input->post("aktif_siswa");
 
-		$d['nama_ayah'] = $this->input->post("nama_ayah");
-		$d['pekerjaan_ayah'] = $this->input->post("pekerjaan_ayah");
-		$d['pendidikan_ayah'] = $this->input->post("pendidikan_ayah");
-		$d['no_hp_ayah'] = $this->input->post("no_hp_ayah");
+		$in['nama_ayah'] = $this->input->post("nama_ayah");
+		$in['pekerjaan_ayah'] = $this->input->post("pekerjaan_ayah");
+		$in['pendidikan_ayah'] = $this->input->post("pendidikan_ayah");
+		$in['no_hp_ayah'] = $this->input->post("no_hp_ayah");
 
-		$d['nama_ibu'] = $this->input->post("nama_ibu");
-		$d['pekerjaan_ibu'] = $this->input->post("pekerjaan_ibu");
-		$d['pendidikan_ibu'] = $this->input->post("pendidikan_ibu");
-		$d['no_hp_ibu'] = $this->input->post("no_hp_ibu");
+		$in['nama_ibu'] = $this->input->post("nama_ibu");
+		$in['pekerjaan_ibu'] = $this->input->post("pekerjaan_ibu");
+		$in['pendidikan_ibu'] = $this->input->post("pendidikan_ibu");
+		$in['no_hp_ibu'] = $this->input->post("no_hp_ibu");
 
-		$d['nama_wali'] = $this->input->post("nama_wali");
-		$d['pekerjaan_wali'] = $this->input->post("pekerjaan_wali");
-		$d['pendidikan_wali'] = $this->input->post("pendidikan_wali");
-		$d['no_hp_wali'] = $this->input->post("no_hp_wali");
+		$in['nama_wali'] = $this->input->post("nama_wali");
+		$in['pekerjaan_wali'] = $this->input->post("pekerjaan_wali");
+		$in['pendidikan_wali'] = $this->input->post("pendidikan_wali");
+		$in['no_hp_wali'] = $this->input->post("no_hp_wali");
 
 		$config['upload_path'] = './upload/siswa';
 		$config['allowed_types'] = 'jpg|png';
@@ -591,7 +580,7 @@ class Pengguna extends CI_Controller
 				$this->session->set_flashdata("error", "Gagal Input.  Kode Siswa Sudah Digunakan");
 				redirect("admin/pengguna/siswa_edit/" . $this->input->post("kode_siswa"));
 			} else {
-				$in['aktif_siswa'] = $this->input->post("aktif_siswa");
+				$d['aktif_siswa'] = $this->input->post("aktif_siswa");
 				$this->db->update("pgn_siswa", $in, $where);
 				$this->session->set_flashdata("success", "Ubah Data Siswa Berhasil");
 				redirect("admin/pengguna/siswa");
@@ -645,7 +634,7 @@ class Pengguna extends CI_Controller
 	}
 	public function siswa_hapus($nis)
 	{
-		$this->Pengguna_model->siswa_hapus($nip);
+		$this->Pengguna_model->siswa_hapus($nis);
 		$this->session->set_flashdata('flash', 'dihapus');
 		redirect('admin/pengguna/siswa');
 	}

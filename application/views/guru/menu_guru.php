@@ -1,73 +1,87 @@
-<?php
-$id_guru = $this->session->userdata("id_guru");
-$cek = $this->db->query("SELECT nama_kelas FROM mst_walikelas INNER JOIN mst_kelas ON mst_walikelas.id_kelas = mst_kelas.id_kelas WHERE id_guru = $id_guru");
-if($cek->num_rows() > 0) {
-  $d = $cek->row();
-  $walikelas = 'Wali Kelas : '.$d->nama_kelas;
-} else {
-  $walikelas = '';
-}
-?>
+<!-- <?php
+      $id = $this->session->userdata("id");
+      $data_siswa = $this->db->query("SELECT foto FROM pgn_siswa WHERE kode_siswa = '$id'")->row();
+      if (!empty($data_siswa->foto)) {
+        $foto = base_url() . 'upload/siswa/' . $data_siswa->foto;
+      } else {
+        $foto = base_url() . 'upload/user.jpg';
+      }
+      ?> -->
+
 
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?php echo base_url(); ?>asset/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo $this->session->userdata("nama"); ?></p>
-          <p style="font-size:10px;margin-bottom:3px;"><?php echo $this->session->userdata("jabatan"); ?></p>
-          <p style="font-size:10px;"><?php echo $walikelas; ?></p>
-        </div>
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar ">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="<?php echo $foto; ?>" class="img-responsive" style="width:50px;height:50px;" alt="User Image">
       </div>
-      <br>
-     
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU NAVIGASI</li>
-        <li>
-          <a href="<?php echo base_url(); ?>">
-            <i class="fa fa-dashboard"></i> <span>Home</span>
-          </a>
-        </li>
+      <div class="pull-left info">
+        <p><?php echo $this->session->userdata("nama"); ?></p>
+        <p><?php echo ucfirst($this->session->userdata("hak_akses")); ?></p>
+      </div>
+    </div>
 
-        <li class="<?php if($this->uri->segment(1) == 'nilai') echo 'active'; ?> treeview <?php if($this->uri->segment(1) == 'nilai') echo 'menu-open'; ?>">
-          <a href="#">
-            <i class="fa fa-list-alt"></i> <span>Input Nilai Siswa</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_harian"><i class="fa fa-angle-double-right"></i> Nilai Harian</a></li>
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_uts"><i class="fa fa-angle-double-right"></i> Nilai UTS</a></li>
-            <?php if($cek->num_rows() > 0) { ?>
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_prestasi"><i class="fa fa-angle-double-right"></i> Nilai Prestasi</a></li>
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_ekstrakulikuler"><i class="fa fa-angle-double-right"></i> Nilai Ekstrakulikuler</a></li>
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_capaian_hasil_belajar"><i class="fa fa-angle-double-right"></i> Nilai Capaian Hasil Belajar</a></li>
-            <?php } ?>
-            <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Nilai Raport</a></li>
-          </ul>
-        </li>
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header">MENU NAVIGASI</li>
+      <li>
+        <a href="<?php echo base_url(); ?>guru/home">
+          <i class="fa fa-dashboard"></i> <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo base_url(); ?>calendar">
+          <i class="fa fa-th-large"></i> <span>Jadwal Pelajaran</span>
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo base_url(); ?>calendar">
+          <i class="fa fa-circle"></i> <span>Data Bahan Dan Tugas</span>
+        </a>
+      </li>
 
-
-      <?php if($cek->num_rows() > 0) { ?>
-        <li class="<?php if($this->uri->segment(1) == 'cetak') echo 'active'; ?> treeview <?php if($this->uri->segment(1) == 'cetak') echo 'menu-open'; ?>">
-          <a href="#">
-            <i class="fa fa-print"></i> <span>Cetak</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>cetak/raport"><i class="fa fa-angle-double-right"></i> Cetak Raport</a></li>
-          </ul>
-        </li>
-      <?php } ?>
-
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+      <li>
+        <a href="<?php echo base_url(); ?>calendar">
+          <i class="fa fa-users"></i> <span>Quiz/UjianOnline</span>
+        </a>
+      </li>
+      <li class="<?php if ($this->uri->segment(1) == 'nilai') echo 'active'; ?> treeview <?php if ($this->uri->segment(1) == 'nilai') echo 'menu-open'; ?>">
+        <a href="#">
+          <i class="fa fa-list-alt"></i> <span>Input Nilai Siswa</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Input Nilai UTS</a></li>
+          <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Input Nilai Raport</a></li>
+        </ul>
+      </li>
+      <li class="<?php if ($this->uri->segment(1) == 'nilai') echo 'active'; ?> treeview <?php if ($this->uri->segment(1) == 'nilai') echo 'menu-open'; ?>">
+        <a href="#">
+          <i class="fa fa-list-alt"></i> <span>Raport</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Data Nilai UTS</a></li>
+          <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Cetak Raport UTS</a></li>
+          <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Data Capaian Belajar</a></li>
+          <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Data Extrakulikuler</a></li>
+          <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Data Prestasi</a></li>
+          <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Data Catatan Wakel</a></li>
+          <li><a href="<?php echo base_url(); ?>admin/nilai/cetak_uts"><i class="fa fa-angle-double-right"></i> Data Nilai Raport</a></li>
+          <li><a href="<?php echo base_url(); ?>nilai/nilai_raport"><i class="fa fa-angle-double-right"></i> Cetak Raport</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="<?php echo base_url(); ?>guru/Calendar">
+          <i class="fa fa-tags"></i> <span>Kalender Akademik</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

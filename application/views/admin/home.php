@@ -1,170 +1,206 @@
-<div class="content-wrapper">
-  <section class="content">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="box box-warning">
-          <div class="box-header with-border">
-            <h3 class="box-title">Persentase Absensi Siswa</h3>
-          </div>
-          <div class="box-body">
-            <div id="pie-absen" style="background:none;height: 400px; width:100%; margin: 0 auto"></div>
-          </div>
-        </div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header animated fadeInDown">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12 mt-1">
+            <div class="card card-success card-outline">
+              <div class="col-lg-3 col-12 ">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h3>
+                      <?php foreach ($siswa as $sis) {
+                        echo $sis['total'];
+                      } ?></h3>
+
+                    <p>Siswa</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-users"></i>
+                  </div>
+                  <a href="<?php echo base_url(); ?>admin/pengguna/siswa" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right "></i></a>
+                </div>
+              </div>
+
+
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                  <div class="inner">
+                    <h3><?php foreach ($guru as $gu) {
+                          echo $gu['total'];
+                        } ?></h3>
+
+                    <p>Guru</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <a href="<?php echo base_url(); ?>admin/pengguna/guru"" class=" small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-orange">
+                  <div class="inner">
+                    <h3><?php foreach ($jurusan as $jur) {
+                          echo $jur['total'];
+                        } ?></h3>
+
+                    <p>Jurusan</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-building-o"></i>
+                  </div>
+                  <a href="<?php echo base_url(); ?>admin/master/jurusan" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3><?php foreach ($kelas as $kel) {
+                          echo $kel['total'];
+                        } ?></h3>
+
+                    <p>Kelas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-institution"></i>
+                  </div>
+                  <a href="<?php echo base_url(); ?>admin/master/kelas" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
       </div>
+      <!-- /.content-header -->
 
-      <div class="col-md-6">
-        <div class="box box-warning">
-          <div class="box-header with-border">
-            <h3 class="box-title">Agenda / Catatan</h3>
+      <!-- Main content -->
 
+      <section class="animated fadeInUp content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+
+          <!-- /.row -->
+          <div class="row">
+            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="card card-success card-outline">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                      google.charts.load('current', {
+                        'packages': ['corechart']
+                      });
+                      google.charts.setOnLoadCallback(drawChart);
+
+                      function drawChart() {
+
+                        var data = google.visualization.arrayToDataTable([
+                          ['jenis_kelamin', ''],
+                          <?php foreach ($home as $lin) {
+                            echo "['" . strval($lin['jenis_kelamin']) . "', " . $lin['jumlah'] . "],";
+                          } ?>
+                        ]);
+
+                        var options = {
+                          title: 'Jumlah Siswa Menurut Jenis Kelamin'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                        chart.draw(data, options);
+                      }
+                    </script>
+                    </head>
+
+                    <body>
+                      <div id="piechart" style="width: 450px; height: 350px;"></div>
+                    </body>
+
+
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="card card-success card-outline">
+
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                      google.charts.load('current', {
+                        'packages': ['bar']
+                      });
+                      google.charts.setOnLoadCallback(drawChart);
+
+                      function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                          ['Year', 'TKJ', 'TSM', 'TKR', 'KKR', 'MM'],
+                          ['2017', 1, 2, 3, 2, 1],
+                          ['2018', 1, 1, 2, 3, 1],
+                          ['2019', 2, 1, 3, 1, 3]
+
+
+
+                        ]);
+
+                        var options = {
+                          chart: {
+                            title: 'Jumlah Siswa Per Tahun Per Jurusan'
+                          }
+                        };
+
+                        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
+                      }
+                    </script>
+
+
+                    <body>
+                      <div id="columnchart_material" style="width: 550px; height: 350px;"></div>
+                    </body>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
           </div>
-          <div class="box-body">
-            <div id="calendar"></div>
-          </div>
-          <!-- /.box-body -->
+
         </div>
-      </div>
 
-      <!-- /.col -->
+        <!-- /.row -->
     </div>
-  </section>
-</div>
-
-<div class="modal fade in" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="<?php echo base_url(); ?>app/agenda_save" method="post" accept-charset="utf-8">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="addModalLabel">Tambah Catatan / Agenda</h4>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="add" value="1">
-          <label>Tanggal*</label>
-          <p id="labelDate"></p>
-          <input type="hidden" name="date" class="form-control" id="inputDate">
-          <label>Keterangan*</label>
-          <textarea name="info" id="inputDesc" class="form-control"></textarea><br />
-        </div>
-        <div class="modal-footer">
-          <button type="submit" id="btnSimpan" class="btn btn-success">Simpan</button>
-        </div>
-      </div>
-    </form>
+    <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
-</div>
+  <!-- /.content-wrapper -->
 
-<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="<?php echo base_url(); ?>app/agenda_hapus" method="post" accept-charset="utf-8">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="delModalLabel">Hapus Catatan / Agenda</h4>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="idDel">
-          <label>Tahun</label>
-          <p id="showYear"></p>
-          <label>Tanggal</label>
-          <p id="showDate"></p>
-          <label>Keterangan*</label>
-          <p id="showDesc"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger">Hapus</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 
-<script>
-  $('#calendar').fullCalendar({
-    header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'prevYear,nextYear',
-    },
-
-    events: "<?php echo base_url(); ?>home/get_calendar",
-
-    dayClick: function(date, jsEvent, view) {
-
-      var tanggal = date.getDate();
-      var bulan = date.getMonth() + 1;
-      var tahun = date.getFullYear();
-      var fullDate = tahun + '-' + bulan + '-' + tanggal;
-
-      $('#addModal').modal('toggle');
-      $('#addModal').modal('show');
-
-      $("#inputDate").val(fullDate);
-      $("#labelDate").text(fullDate);
-      $("#inputYear").val(date.getFullYear());
-      $("#labelYear").text(date.getFullYear());
-    },
-
-    eventClick: function(calEvent, jsEvent, view) {
-      $("#delModal").modal('toggle');
-      $("#delModal").modal('show');
-      $("#idDel").val(calEvent.id);
-      $("#showYear").text(calEvent.year);
-
-      var tgl = calEvent.start.getDate();
-      var bln = calEvent.start.getMonth() + 1;
-      var thn = calEvent.start.getFullYear();
-
-      $("#showDate").text(tgl + '-' + bln + '-' + thn);
-      $("#showDesc").text(calEvent.title);
-    }
-
-
-  });
-</script>
-
-
-<script>
-  Highcharts.chart('pie-absen', {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      backgroundColor: 'transparent',
-      type: 'pie'
-    },
-    title: {
-      text: ''
-    },
-    tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          style: {
-            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-          }
-        }
-      }
-    },
-    series: [{
-      name: 'Kategori',
-      colorByPoint: true,
-      data: [{
-        name: 'Sakit',
-        y: <?php echo $hitung_sakit; ?>
-      }, {
-        name: 'Izin',
-        y: <?php echo $hitung_izin; ?>
-      }, {
-        name: 'Alpa',
-        y: <?php echo $hitung_alpa; ?>
-      }]
-    }]
-  });
-</script>
+  <!-- Main Footer -->

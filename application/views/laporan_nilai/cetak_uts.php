@@ -26,12 +26,12 @@
                       </select>
                      
                     </div>
-                    <!-- <div class="col-xs-4">
-                      <select class="form-control select2" name="kode_kelas" required>
-                        <?php echo $tahun_ajaran; ?>
-                      </select>
-                    </div> -->
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
+                    <select class="form-control" name="id_tahun_ajaran"  required>
+                    <?php echo $combo_tahun_ajaran; ?>
+                    </select>
+                    </div>
+                    <div class="col-xs-2">
                       <button class="btn btn-primary" name="tampil"><i class="fa fa-search"> </i> Tampilkan Data</button>
                     </div>
                   </div>
