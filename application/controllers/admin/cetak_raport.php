@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class nilai extends CI_Controller
+class cetak_raport extends CI_Controller
 {
 
 
@@ -19,15 +19,15 @@ class nilai extends CI_Controller
 	}
 
 
-	public function cetak_uts($kode_kelas = "", $id_tahun_ajaran = "")
+	public function cetak_raport($kode_kelas = "", $id_tahun_ajaran = "")
 	{
-		$d['judul'] = "Cetak UTS";
+		$d['judul'] = "Cetak Raport";
 		if (!empty($kode_kelas)) {
-			$d['nilai_uts'] = $this->Nilai_model->cetak_uts($kode_kelas, $id_tahun_ajaran);
+			$d['nilai_raport'] = $this->Nilai_model->cetak_uts($kode_kelas, $id_tahun_ajaran);
 			$d['kode_kelas'] = $kode_kelas;
 			$d['id_tahun_ajaran'] = $id_tahun_ajaran;
 		} else {
-			$d['nilai_uts'] = "";
+			$d['nilai_raport'] = "";
 			$d['kode_kelas'] = "";
 			$d['id_tahun_ajaran'] = "";
 		}
@@ -35,16 +35,16 @@ class nilai extends CI_Controller
 		$d['combo_tahun_ajaran'] = $this->Combo_model->combo_tahun_ajaran($id_tahun_ajaran);
 		$this->load->view('admin/top', $d);
 		$this->load->view('admin/menu');
-		$this->load->view('laporan_nilai/cetak_uts');
+		$this->load->view('laporan_nilai/cetak_raport');
 		$this->load->view('admin/bottom');
 	}
 
 
 
-	public function tampil_siswa()
+	public function tampil()
 	{
 		$kode_kelas = $this->input->post("kode_kelas");
 		$id_tahun_ajaran = $this->input->post("id_tahun_ajaran");
-		redirect("admin/nilai/cetak_uts/" . $kode_kelas . "/" . $id_tahun_ajaran);
+		redirect("admin/cetak_raport/cetak_raport/" . $kode_kelas . "/" . $id_tahun_ajaran);
 	}
 }
